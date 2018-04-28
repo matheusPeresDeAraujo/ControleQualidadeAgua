@@ -29,9 +29,6 @@
                             <div class="panel-heading">
                             <div class="panel-body">
                                 <div class="table-responsive">
-                                    <div class="col-md-12 text-center">
-                                        <img class="img-responsive" src="img/logo.png" width="400" alt="..." />
-                                    </div>
                                     <div class="col-md-6 col-md-offset-3">
                                         <a href="FrontController?action=BuscarContrato" class="btn btn-block btn-group-lg btn-success" role="button">ACESSA</a>
                                     </div>
