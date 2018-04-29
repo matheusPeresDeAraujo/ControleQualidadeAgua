@@ -23,7 +23,7 @@
             <div class="container">
                 <br />
                 <div class="row vertical-offset-100">
-                    <div class="col-md-4 col-md-offset-4">
+                    <div class="col-md-8 col-md-offset-2">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <div class="col-md-10">
@@ -36,34 +36,47 @@
                             <div class="panel-body">
                                 <form accept-charset="UTF-8" role="form" action="FrontController?action=AlterarContrato" method="post">
                                     <fieldset>
-                                        <div class="form-group">
-                                            <th><span>Codigo </span></th>
-                                            <input name="textCodigo" type="text" value="${contrato.codigo}" hidden/>
-                                            <input class="form-control" placeholder="Numero" name="textCodigo" type="text" value="${contrato.codigo}" readonly="readonly"/>
+                                        <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <th><span>Codigo </span></th>
+                                                        <input name="textCodigo" type="text" value="${contrato.codigo}" hidden/>
+                                                        <input class="form-control" placeholder="Numero" name="textCodigo" type="text" value="${contrato.codigo}" readonly="readonly"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <th><span>Cliente </span></th>
+                                                        <select name="textCodigoCliente" class="form-control">
+                                                            <c:forEach items="${clientes}" var="cliente">
+                                                                <option name="textCodigoCliente" value="${cliente.codigo}" <c:if test="${cliente.codigo == contrato.cliente.codigo}"> selected</c:if>>${cliente.nome}</option>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <th><span>Empresa </span></th>
+                                                        <select name="textCodigoEmpresa" class="form-control">
+                                                            <c:forEach items="${empresas}" var="empresa">
+                                                                <option name="textCodigoEmpresa" value="${empresa.codigo}" <c:if test="${empresa.codigo == contrato.empresa.codigo}"> selected</c:if>>${empresa.nome}</option>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <th><span>Estado </span></th>
+                                                        <input class="form-control" placeholder="Estado" name="textContratoEstado" type="text" value="${contrato.contratoEstado}" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <th><span>Descricao </span></th>
+                                                        <input class="form-control" placeholder="Descricao" name="textDescricao" type="text" value="${contrato.descricao}" />
+                                                    </div>
                                         </div>
-                                        <div class="form-group">
-                                            <th><span>Cliente </span></th>
-                                            <select name="textCodigoCliente" class="form-control">
-                                                <c:forEach items="${clientes}" var="cliente">
-                                                    <option name="textCodigoCliente" value="${cliente.codigo}" <c:if test="${cliente.codigo == contrato.cliente.codigo}"> selected</c:if>>${cliente.nome}</option>
-                                                </c:forEach>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <th><span>Empresa </span></th>
-                                            <select name="textCodigoEmpresa" class="form-control">
-                                                <c:forEach items="${empresas}" var="empresa">
-                                                    <option name="textCodigoEmpresa" value="${empresa.codigo}" <c:if test="${empresa.codigo == contrato.empresa.codigo}"> selected</c:if>>${empresa.nome}</option>
-                                                </c:forEach>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <th><span>Estado </span></th>
-                                            <input class="form-control" placeholder="Estado" name="textContratoEstado" type="text" value="${contrato.contratoEstado}" />
-                                        </div>
-                                        <div class="form-group">
-                                            <th><span>Descricao </span></th>
-                                            <input class="form-control" placeholder="Descricao" name="textDescricao" type="text" value="${contrato.descricao}" />
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <th><span>Servicos </span></th>
+                                                 <c:forEach items="${servicos}" var="servico">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" class="form-check-input" name="textServicos" <c:if test="${contratoServicos.contains(servico.codigo)}"> checked="checked"</c:if> value="${servico.codigo}">
+                                                        <label class="form-check-label">${servico.nome}</label>
+                                                    </div>
+                                                 </c:forEach>
+                                            </div>
                                         </div>
                                         <input class="btn btn-lg btn-warning btn-block" type="submit" value="Editar">
                                     </fieldset>

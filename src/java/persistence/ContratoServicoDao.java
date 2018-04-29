@@ -3,8 +3,11 @@ package persistence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import model.ContratoServico;
 
 public class ContratoServicoDao {
@@ -38,7 +41,7 @@ public class ContratoServicoDao {
         
         try{
             conn = DatabaseLocator.getInstance().getConnection();
-            stmt = conn.prepareStatement("DELETE FROM CONTRATO_SERVICO WHERE CODIGO = ?");
+            stmt = conn.prepareStatement("DELETE FROM CONTRATO_SERVICO WHERE COD_CONTRATO = ?");
             stmt.setInt(1, codigo);
             stmt.execute();
         
@@ -49,6 +52,29 @@ public class ContratoServicoDao {
         }
     }
      
+    
+    public static List<Integer> obterContratoServicos(Integer codigo) throws Exception{
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        List<Integer> servicos = new ArrayList<>();
+        try {
+            conn = DatabaseLocator.getInstance().getConnection();
+            stmt = conn.prepareStatement("SELECT COD_SERVICO FROM CONTRATO_SERVICO WHERE COD_CONTRATO = ?");
+            stmt.setInt(1, codigo);
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                servicos.add(Integer.parseInt(rs.getString("COD_SERVICO")));
+            }
+            
+            return servicos;
+        } catch (Exception e) {
+            throw e;
+        }finally{
+            closeResources(conn, stmt);
+        }
+    } 
+    
     
     public static void closeResources (Connection conn, Statement st) throws SQLException{
         try{

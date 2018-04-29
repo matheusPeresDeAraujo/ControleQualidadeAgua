@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Cliente;
 import model.Contrato;
+import model.ContratoServico;
 import model.Empresa;
+import model.Servico;
+import persistence.ServicoDao;
 
 public class PrepararEditarContratoAction implements Action{
 
@@ -24,7 +27,10 @@ public class PrepararEditarContratoAction implements Action{
             Contrato contrato;
             contrato = Contrato.obterContrato(codigo);
             request.setAttribute("contrato", contrato);
-            
+            List<Integer> contratoServicos = ContratoServico.obterContratoServicos(codigo);
+            request.setAttribute("contratoServicos", contratoServicos);
+            List<Servico> servicos = ServicoDao.obterServicos();
+            request.setAttribute("servicos", servicos);
             List<Cliente> clientes = Cliente.obterClientes();
             List<Empresa> empresas = Empresa.obterEmpresas();
             request.setAttribute("empresas", empresas);
@@ -36,6 +42,8 @@ public class PrepararEditarContratoAction implements Action{
         } catch (IOException ex) {
         } catch (ClassNotFoundException ex) {
         } catch (SQLException ex) {
+            Logger.getLogger(PrepararEditarContratoAction.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(PrepararEditarContratoAction.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

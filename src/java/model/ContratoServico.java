@@ -2,6 +2,7 @@
 package model;
 
 import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import persistence.ContratoServicoDao;
 
@@ -44,9 +45,15 @@ public class ContratoServico {
     }
     
     public static void saveContratoServico(ContratoServico contratoServico) throws SQLException, ClassNotFoundException{
-        
         ContratoServicoDao.getInstance().save(contratoServico);
-        
+    }
+    
+    public static List<Integer> obterContratoServicos(Integer codigo) throws Exception, Exception{
+        return ContratoServicoDao.obterContratoServicos(codigo);
+    }
+    
+    public static void dropContratoServicos(Integer codigoContrato) throws SQLException, ClassNotFoundException{
+        ContratoServicoDao.getInstance().drop(codigoContrato);
     }
     
 }
