@@ -12,15 +12,17 @@ public class Funcionario {
     private Empresa empresa;
     private String nome;
     private String identificacao;
+    private int cargo; //0 - ANALISE; 1 - COLETA
 
     public Funcionario() {
     }
 
-    public Funcionario(int codigo, Empresa empresa, String nome, String identificacao) {
+    public Funcionario(int codigo, Empresa empresa, String nome, String identificacao, int cargo) {
         this.codigo = codigo;
         this.empresa = empresa;
         this.nome = nome;
         this.identificacao = identificacao;
+        this.cargo = cargo;
     }
 
     public int getCodigo() {
@@ -53,6 +55,14 @@ public class Funcionario {
 
     public void setIdentificacao(String identificacao) {
         this.identificacao = identificacao;
+    }
+
+    public int getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(int cargo) {
+        this.cargo = cargo;
     }
     
     public static List<Funcionario> obterFuncionarios() throws SQLException, ClassNotFoundException{
@@ -89,6 +99,7 @@ public class Funcionario {
             this.nome = request.getParameter("textNome");
             this.identificacao = request.getParameter("textIdentificacao");
             this.empresa = Empresa.obterEmpresa(Integer.parseInt(request.getParameter("textEmpresa")));
+            this.cargo = Integer.parseInt(request.getParameter("textCargo"));
         
     }
 }

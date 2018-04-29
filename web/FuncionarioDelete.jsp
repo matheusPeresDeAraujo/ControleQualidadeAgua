@@ -56,6 +56,13 @@
                                             <input name="textEmpresa" type="text" value="${funcionario.empresa.nome}" hidden/>
                                             <input class="form-control" placeholder="Empresa" name="textEmpresa" type="text" value="${funcionario.empresa.nome}" readonly="readonly"/>
                                         </div>
+                                        <div class="form-group">
+                                            <th><span>Cargo </span></th>
+                                            <input name="textCargo" type="text" value="${funcionario.cargo}" hidden/>
+                                            <input class="form-control" placeholder="Cargo" name="textCargo" type="text" 
+                                                   <c:if test="${funcionario.cargo == 1}"> value="Profissional de Analise"</c:if> 
+                                                   <c:if test="${funcionario.cargo == 2}"> value="Profissional de Coleta"</c:if>readonly="readonly"/>
+                                        </div>
                                         <input class="btn btn-lg btn-danger btn-block" type="submit" value="Apagar">
                                     </fieldset>
                                 </form>

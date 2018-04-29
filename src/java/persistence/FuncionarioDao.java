@@ -26,8 +26,8 @@ public class FuncionarioDao {
         try{
             conn = DatabaseLocator.getInstance().getConnection();
             stmt = conn.prepareStatement("INSERT INTO FUNCIONARIO "
-                    + "(NOME, IDENTIFICACAO, COD_EMPRESA) "
-                    + "VALUES (?,?,?)");
+                    + "(NOME, IDENTIFICACAO, COD_EMPRESA, CARGO) "
+                    + "VALUES (?, ?, ?, ?)");
             parseAtributos(stmt, funcionario);
             
         }catch(SQLException e){
@@ -111,7 +111,7 @@ public class FuncionarioDao {
         
         try{
             conn = DatabaseLocator.getInstance().getConnection();
-            stmt = conn.prepareStatement("UPDATE FUNCIONARIO SET NOME = ?, IDENTIFICACAO = ?, COD_EMPRESA = ? WHERE CODIGO = ?");
+            stmt = conn.prepareStatement("UPDATE FUNCIONARIO SET NOME = ?, IDENTIFICACAO = ?, COD_EMPRESA = ?, CARGO = ? WHERE CODIGO = ?");
             parseAtributos(stmt, funcionario);
         
         }catch(SQLException e){
@@ -135,9 +135,10 @@ public class FuncionarioDao {
     private static void parseAtributos(PreparedStatement stmt, Funcionario funcionario) throws SQLException{
             stmt.setString(1, funcionario.getNome());
             stmt.setString(2, funcionario.getIdentificacao());
-            stmt.setInt(3, funcionario.getEmpresa().getCodigo()); //cod or name
+            stmt.setInt(3, funcionario.getEmpresa().getCodigo());
+            stmt.setInt(4, funcionario.getCargo());
         if(funcionario.getCodigo() != 0){
-            stmt.setInt(4, funcionario.getCodigo());
+            stmt.setInt(5, funcionario.getCodigo());
         }
             stmt.execute();
     }
@@ -150,6 +151,7 @@ public class FuncionarioDao {
         funcionario.setNome(rs.getString("NOME"));
         funcionario.setIdentificacao(rs.getString("IDENTIFICACAO"));
         funcionario.setEmpresa(Empresa.obterEmpresa(Integer.parseInt(rs.getString("COD_EMPRESA"))));
+        funcionario.setCargo(Integer.parseInt(rs.getString("CARGO")));
         
         return funcionario;
     }
