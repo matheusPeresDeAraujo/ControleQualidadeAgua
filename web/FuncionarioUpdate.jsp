@@ -51,10 +51,17 @@
                                         </div>
                                         <div class="form-group">
                                             <th><span>Empresa </span></th>
-                                            <select name="textCodigoEmpresa" class="form-control">
+                                            <select name="textEmpresa" class="form-control">
                                                 <c:forEach items="${empresas}" var="empresa">
                                                     <option name="textEmpresa" value="${empresa.codigo}" <c:if test="${empresa.codigo == funcionario.empresa.codigo}"> selected</c:if>>${empresa.nome}</option>
                                                 </c:forEach>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <th><span>Cargo </span></th>
+                                            <select name="textCargo" class="form-control">
+                                                    <option name="textCargo" value="1" <c:if test="${funcionario.cargo == 1}"> selected</c:if>>Profissional de Analise</option>
+                                                    <option name="textCargo" value="2" <c:if test="${funcionario.cargo == 2}"> selected</c:if>>Profissional de Coleta</option>
                                             </select>
                                         </div>
                                         <input class="btn btn-lg btn-warning btn-block" type="submit" value="Editar">
