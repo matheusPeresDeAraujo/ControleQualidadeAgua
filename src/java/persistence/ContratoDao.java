@@ -18,15 +18,23 @@ public class ContratoDao {
     private ContratoDao(){}
     public static ContratoDao getInstance(){return instance;}
     
-    public void save(Contrato contrato) throws SQLException, ClassNotFoundException{
+    public int save(Contrato contrato) throws SQLException, ClassNotFoundException{
         
         Connection conn = null;
         PreparedStatement stmt = null;
+        Statement st = null;
+        
         
         try{
             conn = DatabaseLocator.getInstance().getConnection();
             stmt = conn.prepareStatement("INSERT INTO CONTRATO (COD_CLIENTE, COD_EMPRESA, COD_CONTRATO_ESTADO, DESCRICAO) VALUES (?, ?, ?, ?)");
             parseAtributos(stmt, contrato);
+            
+            st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT MAX(CODIGO) AS MAX FROM CONTRATO");
+            rs.next();
+            String codigo = rs.getString("MAX");
+            return Integer.parseInt(codigo);
             
         }catch(SQLException e){
             throw e;
