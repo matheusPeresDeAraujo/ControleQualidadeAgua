@@ -51,6 +51,9 @@ public class ContratoDao {
         
         try{
             conn = DatabaseLocator.getInstance().getConnection();
+            stmt = conn.prepareStatement("DELETE FROM CONTRATO_SERVICO WHERE COD_CONTRATO = ?");
+            stmt.setInt(1, codigo);
+            stmt.execute();
             stmt = conn.prepareStatement("DELETE FROM CONTRATO WHERE CODIGO = ?");
             stmt.setInt(1, codigo);
             stmt.execute();
