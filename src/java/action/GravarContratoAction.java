@@ -9,6 +9,8 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Contrato;
+import model.ContratoServico;
+import model.Servico;
 
 public class GravarContratoAction implements Action{
 
@@ -26,7 +28,17 @@ public class GravarContratoAction implements Action{
             try {
                 
                 Contrato contrato = new Contrato();
-                contrato.saveContrato(request);
+                int codigoContrato = contrato.saveContrato(request);
+                
+                
+                String[] servicos = request.getParameterValues("textServicos");
+                
+                for(String servico : servicos){
+                    ContratoServico contratoServico = new ContratoServico();
+                    contratoServico.setContrato(Contrato.obterContrato(codigoContrato));
+                    contratoServico.setServico(Servico.obterServico(Integer.parseInt(servico)));
+                    ContratoServico.saveContratoServico(contratoServico);
+                }
                 
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(GravarContratoAction.class.getName()).log(Level.SEVERE, null, ex);

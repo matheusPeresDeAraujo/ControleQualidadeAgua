@@ -122,10 +122,10 @@ public class Contrato {
         return ContratoDao.obterContrato(codigo);
     }
     
-    public void saveContrato(HttpServletRequest request) throws SQLException, ClassNotFoundException{
+    public int saveContrato(HttpServletRequest request) throws SQLException, ClassNotFoundException{
         
         setParameter(request);
-        ContratoDao.getInstance().save(this);
+        return ContratoDao.getInstance().save(this);
         
     }
     

@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Cliente;
 import model.Empresa;
+import model.Servico;
 import persistence.ContratoEstadoDao;
+import persistence.ServicoDao;
 
 public class PrepararInserirContratoAction implements Action{
 
@@ -24,6 +26,8 @@ public class PrepararInserirContratoAction implements Action{
             List<Cliente> clientes = Cliente.obterClientes();
             List<Empresa> empresas = Empresa.obterEmpresas();
             List<String> contratoEstados = ContratoEstadoDao.obterContratoEstados();
+            List<Servico> servicos = ServicoDao.obterServicos();
+            request.setAttribute("servicos", servicos);
             request.setAttribute("contratoEstados", contratoEstados);
             request.setAttribute("empresas", empresas);
             request.setAttribute("clientes", clientes);
