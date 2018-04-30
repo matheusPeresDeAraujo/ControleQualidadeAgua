@@ -37,6 +37,8 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li><a href="FrontController?action=BuscarContrato" class="" role="button">Contratos</a></li>
+                                        <li><a href="FrontController?action=BuscarContratoProfissionalColeta" class="" role="button">Contratos Coleta</a></li>
+                                        <li><a href="FrontController?action=BuscarContratoProfissionalAnalise" class="" role="button">Contratos Analise</a></li>
                                         <li><a href="FrontController?action=BuscarCliente" class="" role="button">Clientes</a></li>
                                         <li><a href="FrontController?action=BuscarFuncionario" class="" role="button">Funcionarios</a></li>
                                         <li><a href="FrontController?action=BuscarEmpresa" class="" role="button">Empresa</a></li>
