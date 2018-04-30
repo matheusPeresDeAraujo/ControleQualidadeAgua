@@ -3,7 +3,6 @@ package model;
 
 import java.sql.SQLException;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import persistence.ContratoServicoDao;
 
 public class ContratoServico {

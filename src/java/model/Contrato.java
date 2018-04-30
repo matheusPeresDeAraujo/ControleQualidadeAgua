@@ -13,6 +13,7 @@ public class Contrato {
     private Empresa empresa;
     private ContratoEstado contratoEstado;
     private String descricao;
+    private Local local;
     
     public Contrato() {
     }
@@ -29,6 +30,14 @@ public class Contrato {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    public Local getLocal() {
+        return local;
+    }
+
+    public void setLocal(Local local) {
+        this.local = local;
     }
 
     public Cliente getCliente() {

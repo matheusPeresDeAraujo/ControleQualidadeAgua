@@ -66,6 +66,33 @@
                                                         <th><span>Descricao </span></th>
                                                         <input class="form-control" placeholder="Descricao" name="textDescricao" type="text" value="${contrato.descricao}" />
                                                     </div>
+                                                    <div class="form-group">
+                                                        <th><span>ENDERECO </span></th>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <th><span>Logradouro </span></th>
+                                                        <input class="form-control" placeholder="Logradouro" name="textLogradouro" type="text" value="${local.logradouro}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <th><span>Numero </span></th>
+                                                        <input class="form-control" placeholder="Numero" name="textNumero" type="text"  value="${local.numero}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <th><span>Complemento </span></th>
+                                                        <input class="form-control" placeholder="Complemento" name="textComplemento" type="text"  value="${local.complemento}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <th><span>Bairro </span></th>
+                                                        <input class="form-control" placeholder="Bairro" name="textBairro" type="text"  value="${local.bairro}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <th><span>Cidade </span></th>
+                                                        <input class="form-control" placeholder="Cidade" name="textEstado" type="text"  value="${local.cidade}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <th><span>Estado </span></th>
+                                                        <input class="form-control" placeholder="Estado" name="textEstado" type="text"  value="${local.estado}"/>
+                                                    </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
