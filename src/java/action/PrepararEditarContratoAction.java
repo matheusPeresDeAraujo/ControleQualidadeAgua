@@ -15,6 +15,7 @@ import model.Cliente;
 import model.Contrato;
 import model.ContratoServico;
 import model.Empresa;
+import model.Local;
 import model.Servico;
 import persistence.ServicoDao;
 
@@ -32,9 +33,11 @@ public class PrepararEditarContratoAction implements Action{
             List<Servico> servicos = ServicoDao.obterServicos();
             request.setAttribute("servicos", servicos);
             List<Cliente> clientes = Cliente.obterClientes();
+            request.setAttribute("clientes", clientes);
             List<Empresa> empresas = Empresa.obterEmpresas();
             request.setAttribute("empresas", empresas);
-            request.setAttribute("clientes", clientes);
+            Local local = Local.obterLocal(contrato.getLocal().getCodigo());
+            request.setAttribute("local", local);
             
             RequestDispatcher view = request.getRequestDispatcher("ContratoUpdate.jsp");
             view.forward(request, response);

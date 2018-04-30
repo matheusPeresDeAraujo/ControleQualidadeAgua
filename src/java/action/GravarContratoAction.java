@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Contrato;
 import model.ContratoServico;
+import model.Local;
 import model.Servico;
 
 public class GravarContratoAction implements Action{
@@ -27,7 +28,11 @@ public class GravarContratoAction implements Action{
         } else{
             try {
                 
+                Local local = new Local();
+                int codigoLocal = local.saveLocal(request);
+                
                 Contrato contrato = new Contrato();
+                contrato.setLocal(Local.obterLocal(codigoLocal));
                 int codigoContrato = contrato.saveContrato(request);
                 
                 

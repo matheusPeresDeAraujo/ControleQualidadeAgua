@@ -11,6 +11,7 @@ import java.util.List;
 import model.Cliente;
 import model.Contrato;
 import model.Empresa;
+import model.Local;
 
 public class ContratoDao {
     
@@ -27,7 +28,7 @@ public class ContratoDao {
         
         try{
             conn = DatabaseLocator.getInstance().getConnection();
-            stmt = conn.prepareStatement("INSERT INTO CONTRATO (COD_CLIENTE, COD_EMPRESA, COD_CONTRATO_ESTADO, DESCRICAO) VALUES (?, ?, ?, ?)");
+            stmt = conn.prepareStatement("INSERT INTO CONTRATO (COD_CLIENTE, COD_EMPRESA, COD_CONTRATO_ESTADO, COD_LOCAL, DESCRICAO) VALUES (?, ?, ?, ?, ?)");
             parseAtributos(stmt, contrato);
             
             st = conn.createStatement();
@@ -119,7 +120,7 @@ public class ContratoDao {
         
         try{
             conn = DatabaseLocator.getInstance().getConnection();
-            stmt = conn.prepareStatement("UPDATE CONTRATO SET COD_CLIENTE = ?, COD_EMPRESA = ?, COD_CONTRATO_ESTADO = ?, DESCRICAO = ? WHERE CODIGO = ?");
+            stmt = conn.prepareStatement("UPDATE CONTRATO SET COD_CLIENTE = ?, COD_EMPRESA = ?, COD_CONTRATO_ESTADO = ?, COD_LOCAL = ?, DESCRICAO = ? WHERE CODIGO = ?");
             parseAtributos(stmt, contrato);
         
         }catch(SQLException e){
@@ -144,9 +145,10 @@ public class ContratoDao {
         stmt.setInt(1, contrato.getCliente().getCodigo());
         stmt.setInt(2, contrato.getEmpresa().getCodigo());
         stmt.setInt(3, contrato.getContratoEstadoCodigo());
-        stmt.setString(4, contrato.getDescricao());
+        stmt.setInt(4, contrato.getLocal().getCodigo());
+        stmt.setString(5, contrato.getDescricao());
         if(contrato.getCodigo() != 0){
-            stmt.setInt(5, contrato.getCodigo());
+            stmt.setInt(6, contrato.getCodigo());
         }
         stmt.execute();
     }
@@ -159,6 +161,7 @@ public class ContratoDao {
         contrato.setCliente(Cliente.obterCliente(Integer.parseInt(rs.getString("COD_CLIENTE"))));
         contrato.setEmpresa(Empresa.obterEmpresa(Integer.parseInt(rs.getString("COD_EMPRESA"))));
         contrato.setContratoEstadoCodigo(Integer.parseInt(rs.getString("COD_CONTRATO_ESTADO")));
+        contrato.setLocal(Local.obterLocal(Integer.parseInt(rs.getString("COD_LOCAL"))));
         contrato.setDescricao(rs.getString("DESCRICAO"));
         
         return contrato;

@@ -19,6 +19,7 @@ public class ApagarContratoAction implements Action{
             try {
                 
                 Contrato.dropContrato(Integer.parseInt(request.getParameter("textCodigo")));
+//                Local.dropLocal(Contrato.obterContrato(Integer.parseInt(request.getParameter("textCodigo"))).getLocal().getCodigo());
                 
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(ApagarContratoAction.class.getName()).log(Level.SEVERE, null, ex);
