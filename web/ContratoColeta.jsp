@@ -27,7 +27,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <div class="col-md-10">
-                                    <h3 class="panel-title">CONTRATOS</h3>
+                                    <h3 class="panel-title">CONTRATOS COLETA</h3>
                                 </div>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -64,8 +64,8 @@
                                                 <td><c:out value="${contrato.empresa.nome}" /></td>
                                                 <td><c:out value="${contrato.cliente.nome}" /></td>
                                                 <td><c:out value="${contrato.contratoEstado}" /></td>
-                                                <td><a class="btn btn-success btn-xs " role="button" href="FrontController?action=PrepararEditarContrato&codigo=<c:out value="${contrato.codigo}"/>">Editar</a></td>
-                                                <td><a class="btn btn-danger btn-xs " role="button" href="FrontController?action=PrepararExcluirContrato&codigo=<c:out value="${contrato.codigo}"/>">Excluir</a></td>
+                                                <td><a class="btn btn-success btn-xs " role="button" href="FrontController?action=PrepararIniciarColeta&codigo=<c:out value="${contrato.codigo}"/>">Iniciar</a></td>
+                                                <td><a class="btn btn-danger btn-xs " role="button" href="FrontController?action=PrepararFinalizarColeta&codigo=<c:out value="${contrato.codigo}"/>">Finalizar</a></td>
                                             </tr>
                                         </c:forEach>
                                     </table>
