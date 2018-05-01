@@ -53,8 +53,8 @@
                                         <div class="form-group">
                                             <th><span>Cargo </span></th>
                                             <select name="textCargo" class="form-control">
-                                                    <option name="textCargo" value="PROFISSIONAL_ANALISE">Profissional de Analise</option>
-                                                    <option name="textCargo" value="PROFISSIONAL_COLETA">Profissional de Coleta</option>
+                                                    <option name="textCargo" value="1">Profissional de Analise</option>
+                                                    <option name="textCargo" value="2">Profissional de Coleta</option>
                                             </select>
                                         </div>
                                         <input class="btn btn-lg btn-success btn-block" type="submit" value="Gravar">

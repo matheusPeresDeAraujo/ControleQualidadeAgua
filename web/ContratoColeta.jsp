@@ -64,7 +64,7 @@
                                                 <td><c:out value="${contrato.empresa.nome}" /></td>
                                                 <td><c:out value="${contrato.cliente.nome}" /></td>
                                                 <td><c:out value="${contrato.contratoEstado}" /></td>
-                                                <td><a class="btn btn-success btn-xs " role="button" href="FrontController?action=PrepararIniciarColeta&codigo=<c:out value="${contrato.codigo}"/>">Iniciar</a></td>
+                                                <td><a class="btn btn-success btn-xs " role="button" href="FrontController?action=PrepararIniciarColeta&codigo=<c:out value="${contrato.codigo}"/>">Coletar</a></td>
                                                 <td><a class="btn btn-danger btn-xs " role="button" href="FrontController?action=PrepararFinalizarColeta&codigo=<c:out value="${contrato.codigo}"/>">Finalizar</a></td>
                                             </tr>
                                         </c:forEach>
