@@ -23,7 +23,7 @@
             <div class="container">
                 <br />
                 <div class="row vertical-offset-100">
-                    <div class="col-md-10 col-md-offset-1">
+                    <div class="col-md-8 col-md-offset-2">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <div class="col-md-10">
@@ -56,16 +56,13 @@
                                         <tr>
                                             <th>Codigo</th>
                                             <th>Contrato</th>
-                                            <th>Responsavel Coleta</th>
-                                            <th colspan=2>Ação</th>
+                                            <th colspan=1>Ação</th>
                                         </tr>
                                         <c:forEach items="${amostras}" var="amostra">
                                             <tr>
                                                 <td><c:out value="${amostra.codigo}" /></td>
                                                 <td><c:out value="${amostra.contrato.codigo}" /></td>
-                                                <td><c:out value="${amostra.profissionalColeta.nome}" /></td>
-                                                <td><a class="btn btn-success btn-xs " role="button" href="FrontController?action=PrepararIniciarAnalise&codigo=<c:out value="${amostra.codigo}"/>">Iniciar</a></td>
-                                                <td><a class="btn btn-danger btn-xs " role="button" href="FrontController?action=PrepararFinalizarAnalise&codigo=<c:out value="${amostra.codigo}"/>">Finalizar</a></td>
+                                                <td><a class="btn btn-success btn-xs " role="button" href="FrontController?action=PrepararIniciarAnalise&codigo=<c:out value="${amostra.codigo}"/>">Analisar</a></td>
                                             </tr>
                                         </c:forEach>
                                     </table>

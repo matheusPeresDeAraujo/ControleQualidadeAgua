@@ -99,7 +99,7 @@
                                                 <th><span>Servicos </span></th>
                                                  <c:forEach items="${servicos}" var="servico">
                                                     <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input" name="textServicos" <c:if test="${contratoServicos.contains(servico.codigo)}"> checked="checked"</c:if> value="${servico.codigo}">
+                                                        <input type="checkbox" class="form-check-input" name="textServicos" <c:if test="${contratoServicos.contains(servico.codigo)}"> hidden</c:if> value="${servico.codigo}">
                                                         <label class="form-check-label">${servico.nome}</label>
                                                     </div>
                                                  </c:forEach>
