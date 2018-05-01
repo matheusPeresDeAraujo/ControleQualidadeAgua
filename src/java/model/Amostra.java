@@ -82,7 +82,7 @@ public class Amostra {
     private void setParameter(HttpServletRequest request) throws SQLException, ClassNotFoundException{
         
         this.contrato = (Contrato.obterContrato(Integer.parseInt(request.getParameter("textCodigoContrato"))));
-        this.local = (Local.obterLocal(Integer.parseInt(request.getParameter("textCodigoLocal"))));
+        this.local = this.contrato.getLocal();
         this.profissionalColeta = (Funcionario.obterFuncionario(Integer.parseInt(request.getParameter("textCodigoFuncionario"))));
         
     }

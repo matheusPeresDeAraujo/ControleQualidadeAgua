@@ -38,9 +38,9 @@
                                     <fieldset>
                                         <div class="form-group">
                                                         <th><span>Contrato </span></th>
-                                                        <input name="textCodigo" type="text" value="${contrato.codigo}" hidden/>
-                                                        <input class="form-control" placeholder="Numero" name="textCodigo" type="text" value="${contrato.codigo}" readonly="readonly"/>
-                                                    </div>
+                                                        <input name="textCodigoContrato" type="text" value="${contrato.codigo}" hidden/>
+                                                        <input class="form-control" placeholder="Numero" name="textCodigoContrato" type="text" value="${contrato.codigo}" readonly="readonly"/>
+                                        </div>
                                         <div class="form-group">
                                                     <th><span>Progissional de Coleta </span></th>
                                                     <select name="textCodigoFuncionario" class="form-control">

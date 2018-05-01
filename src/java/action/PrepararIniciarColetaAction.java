@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Contrato;
 import model.Funcionario;
+import model.Local;
 import model.ProfissionalColeta;
 
 public class PrepararIniciarColetaAction implements Action{
@@ -37,7 +38,9 @@ public class PrepararIniciarColetaAction implements Action{
                 }
             }
             request.setAttribute("funcionarios", funcionariosColeta);
-            request.setAttribute("contrato", Contrato.obterContrato(Integer.parseInt(request.getParameter("codigo"))));
+            Contrato contrato = Contrato.obterContrato(Integer.parseInt(request.getParameter("codigo")));
+            request.setAttribute("contrato", contrato);
+            request.setAttribute("local", contrato.getLocal());
             
             RequestDispatcher view = request.getRequestDispatcher("ContratoColetaIniciar.jsp");
             view.forward(request, response);

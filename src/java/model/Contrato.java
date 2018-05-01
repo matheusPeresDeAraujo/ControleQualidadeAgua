@@ -138,6 +138,10 @@ public class Contrato {
         
     }
     
+    public void updateContrato(Contrato contrato) throws SQLException, ClassNotFoundException{
+        ContratoDao.getInstance().update(contrato);
+    }
+    
     public void updateContrato(HttpServletRequest request) throws SQLException, ClassNotFoundException{
             
         this.codigo = Integer.parseInt(request.getParameter("textCodigo"));
