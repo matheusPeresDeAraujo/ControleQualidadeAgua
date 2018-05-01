@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Contrato;
 import model.Funcionario;
-import model.Local;
 import model.ProfissionalColeta;
 
 public class PrepararIniciarColetaAction implements Action{

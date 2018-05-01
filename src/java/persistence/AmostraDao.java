@@ -12,7 +12,6 @@ import model.Amostra;
 import model.Contrato;
 import model.Funcionario;
 import model.Local;
-import model.ProfissionalColeta;
 
 public class AmostraDao {
     
@@ -115,7 +114,7 @@ public class AmostraDao {
         
         try{
             conn = DatabaseLocator.getInstance().getConnection();
-            stmt = conn.prepareStatement("UPDATE AMOSTRA SET COD_CONTRATO = ?, COD_LOCAL = ?, COD_PROFISSIONAL_COLETA = ? WHERE CODIGO = ?");
+            stmt = conn.prepareStatement("UPDATE AMOSTRA SET COD_CONTRATO = ?, COD_LOCAL = ?, COD_PROFISSIONAL_COLETOR = ? WHERE CODIGO = ?");
             parseAtributos(stmt, amostra);
         
         }catch(SQLException e){
@@ -152,8 +151,8 @@ public class AmostraDao {
         Amostra amostra = new Amostra();
         amostra.setCodigo(Integer.parseInt(rs.getString("CODIGO")));
         amostra.setContrato(Contrato.obterContrato(Integer.parseInt(rs.getString("COD_CONTRATO"))));
-        amostra.setLocal(Local.obterLocal(Integer.parseInt(rs.getString("IDENTIFICACAO"))));
-        amostra.setProfissionalColeta(Funcionario.obterFuncionario(Integer.parseInt(rs.getString("TELEFONE"))));
+        amostra.setLocal(Local.obterLocal(Integer.parseInt(rs.getString("COD_LOCAL"))));
+        amostra.setProfissionalColeta(Funcionario.obterFuncionario(Integer.parseInt(rs.getString("COD_PROFISSIONAL_COLETOR"))));
         
         return amostra;
     }
