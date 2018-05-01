@@ -11,6 +11,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Amostra;
 import model.Contrato;
 
 public class BuscarContratoAnaliseAction implements Action{
@@ -32,7 +33,18 @@ public class BuscarContratoAnaliseAction implements Action{
                 }  
             }
             
-            request.setAttribute("contratos", contratosAnalise);
+            List<Amostra> amostras = Amostra.obterAmostras();
+            List<Amostra> amostrasColetaFinalizada = new ArrayList<>();
+            
+            for(Amostra amostra : amostras){
+                if(contratosAnalise.contains(amostra.getContrato())){
+                    amostrasColetaFinalizada.add(amostra);
+                }else{
+                    //Amostra pertence a um grupo que ainda náo esta fecado. Coleta em andamento
+                }
+            }
+            
+            request.setAttribute("amostras", amostrasColetaFinalizada);
             RequestDispatcher view = 
                     request.getRequestDispatcher("ContratoAnalise.jsp");
             view.forward(request, response);
