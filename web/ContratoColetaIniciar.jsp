@@ -27,36 +27,28 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <div class="col-md-10">
-                                    <h3 class="panel-title">Gravar Funcionario</h3>
+                                    <h3 class="panel-title">Iniciar Coleta</h3>
                                 </div>
                                 <div>
-                                    <a href="FrontController?action=BuscarFuncionario" class="" role="button"><img src="img/cancelar.png" width="36" alt="..." /></a>
+                                    <a href="FrontController?action=BuscarContratoColeta" class="" role="button"><img src="img/cancelar.png" width="36" alt="..." /></a>
                                 </div>
                             </div>
                             <div class="panel-body">
-                                <form accept-charset="UTF-8" role="form" action="FrontController?action=GravarFuncionario" method="post">
+                                <form accept-charset="UTF-8" role="form" action="FrontController?action=GravarContratoColeta" method="post">
                                     <fieldset>
                                         <div class="form-group">
-                                            <input class="form-control" placeholder="Nome" name="textNome" type="text">
+                                                        <th><span>Contrato </span></th>
+                                                        <input name="textCodigoContrato" type="text" value="${contrato.codigo}" hidden/>
+                                                        <input class="form-control" placeholder="Numero" name="textCodigoContrato" type="text" value="${contrato.codigo}" readonly="readonly"/>
                                         </div>
                                         <div class="form-group">
-                                            <input class="form-control" placeholder="CPF / CNPJ" name="textIdentificacao" type="text">
-                                        </div>
-                                        <div class="form-group">
-                                            <th><span>Empresa </span></th>
-                                            <select name="textEmpresa" class="form-control">
-                                                <c:forEach items="${empresas}" var="empresa">
-                                                    <option name="textEmpresa" value="${empresa.codigo}">${empresa.nome}</option>
-                                                </c:forEach>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <th><span>Cargo </span></th>
-                                            <select name="textCargo" class="form-control">
-                                                    <option name="textCargo" value="1">Profissional de Analise</option>
-                                                    <option name="textCargo" value="2">Profissional de Coleta</option>
-                                            </select>
-                                        </div>
+                                                    <th><span>Progissional de Coleta </span></th>
+                                                    <select name="textCodigoFuncionario" class="form-control">
+                                                        <c:forEach items="${funcionarios}" var="funcionario">
+                                                            <option name="textCodigoFuncionario" value="${funcionario.codigo}">${funcionario.nome}</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </div>
                                         <input class="btn btn-lg btn-success btn-block" type="submit" value="Gravar">
                                     </fieldset>
                                 </form>

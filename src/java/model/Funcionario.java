@@ -12,7 +12,7 @@ public class Funcionario {
     private Empresa empresa;
     private String nome;
     private String identificacao;
-    private int cargo; //0 - ANALISE; 1 - COLETA
+    private int cargo; //1 - ANALISE; 2 - COLETA
 
     public Funcionario() {
     }

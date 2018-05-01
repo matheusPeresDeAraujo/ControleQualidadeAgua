@@ -53,14 +53,16 @@
                                         </div>
                                         <tr>
                                             <th>NOME</th>
-                                            <th>IDENTIFICACAO</th>
+                                            <th>CARGO</th>
                                             <th>EMPRESA</th>
                                             <th colspan=2>Ação</th>
                                         </tr>
                                         <c:forEach items="${funcionarios}" var="funcionario">
                                             <tr>
                                                 <td><c:out value="${funcionario.nome}" /></td>
-                                                <td><c:out value="${funcionario.identificacao}" /></td>
+                                                <td><c:if test="${funcionario.cargo == 1}"> <c:out value="PROFISSIONAL DE ANALISE" /> </c:if>
+                                                    <c:if test="${funcionario.cargo == 2}"> <c:out value="ROFISSIONAL DE COLETA" /> </c:if>
+                                                </td>
                                                 <td><c:out value="${funcionario.empresa.nome}" /></td>
                                                 <td><a class="btn btn-success btn-xs " role="button" href="FrontController?action=PrepararEditarFuncionario&codigo=<c:out value="${funcionario.codigo}"/>">EDITAR</a></td>
                                                 <td><a class="btn btn-danger btn-xs " role="button" href="FrontController?action=PrepararExcluirFuncionario&codigo=<c:out value="${funcionario.codigo}"/>">EXCLUIR</a></td>
