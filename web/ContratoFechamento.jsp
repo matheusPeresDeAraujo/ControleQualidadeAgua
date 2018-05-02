@@ -44,7 +44,7 @@
                                         <li><a href="FrontController?action=BuscarFuncionario" class="" role="button">Funcionarios</a></li>
                                         <li><a href="FrontController?action=BuscarEmpresa" class="" role="button">Empresa</a></li>
                                     </ul>
-                                    <a href="FrontController?action=PrepararInserirContrato" class="" role="button"><img src="img/INSERT.jpg" width="36" alt="..." /></a>
+                                    <a href="FrontController?action=CarregarCalculadora" class="" role="button"><img src="img/INSERT.jpg" width="36" alt="..." /></a>
                                 </div>
                             <div class="panel-body">
                                 <div class="table-responsive">

@@ -45,10 +45,11 @@ public class ContratoDao {
     }
       
     
-    public void drop(int codigo) throws SQLException, ClassNotFoundException{
+    public boolean drop(int codigo) throws SQLException, ClassNotFoundException{
         
         Connection conn = null;
         PreparedStatement stmt = null;
+        Boolean retorno = true;
         
         try{
             conn = DatabaseLocator.getInstance().getConnection();
@@ -60,10 +61,13 @@ public class ContratoDao {
             stmt.execute();
         
         }catch(SQLException e){
+            retorno = false;
             throw e;
         }finally{
             closeResources(conn, stmt);
+            
         }
+        return retorno;
     }
     
     
@@ -113,10 +117,11 @@ public class ContratoDao {
     }
     
     
-    public void update(Contrato contrato) throws SQLException, ClassNotFoundException{
+    public boolean update(Contrato contrato) throws SQLException, ClassNotFoundException{
         
         Connection conn = null;
         PreparedStatement stmt = null;
+        Boolean retorno = true;
         
         try{
             conn = DatabaseLocator.getInstance().getConnection();
@@ -124,10 +129,12 @@ public class ContratoDao {
             parseAtributos(stmt, contrato);
         
         }catch(SQLException e){
+            retorno = false;
             throw e;
         }finally{
             closeResources(conn, stmt);
         }
+        return retorno;
     }
      
     

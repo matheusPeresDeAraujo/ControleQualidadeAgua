@@ -1,8 +1,6 @@
 
 package model;
 
-import model.Contrato;
-import model.ContratoEstado;
 
 public class ContratoEstadoAberto implements ContratoEstado{
 

@@ -3,9 +3,7 @@ package model;
 
 import java.sql.SQLException;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import persistence.AnaliseDao;
-import persistence.ServicoDao;
 
 public class Analise {
      
@@ -13,13 +11,13 @@ public class Analise {
     private Amostra amostra;
     private Servico servico;
     private Funcionario profissionalAnalise;
-    private int valor;
+    private double valor;
     private Resultado resultado;
 
     public Analise() {
     }
 
-    public Analise(Amostra amostra, Servico servico, Funcionario profissionalAnalise, int valor, Resultado resultado) {
+    public Analise(Amostra amostra, Servico servico, Funcionario profissionalAnalise, double valor, Resultado resultado) {
         this.amostra = amostra;
         this.servico = servico;
         this.profissionalAnalise = profissionalAnalise;
@@ -59,11 +57,11 @@ public class Analise {
         this.profissionalAnalise = profissionalAnalise;
     }
 
-    public int getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(int valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 

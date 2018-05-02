@@ -15,7 +15,6 @@ import model.Analise;
 import model.Contrato;
 import model.ContratoEstadoAnaliseFinalizada;
 import model.ContratoEstadoEmAnalise;
-import model.Funcionario;
 import model.ProfissionalAnalise;
 import model.Resultado;
 import model.Servico;
@@ -38,7 +37,7 @@ public class GravarContratoAnaliseAction implements Action{
                     
                     if(!servicos[i].equals("")){
                         
-                        int value = Integer.parseInt(servicos[i]);
+                        double value = Double.parseDouble(servicos[i]);
                         
                         Analise analise = new Analise();
                         analise.setAmostra(Amostra.obterAmostra(Integer.parseInt(request.getParameter("textCodigoAmostra"))));
@@ -46,7 +45,7 @@ public class GravarContratoAnaliseAction implements Action{
                         ProfissionalAnalise pAnalise = ProfissionalAnalise.obterFuncionario(Integer.parseInt(request.getParameter("textCodigoFuncionario")));
                         analise.setProfissionalAnalise(pAnalise);
                         analise.setValor(value);
-                        analise.setResultado(Resultado.obterResultado(pAnalise.analiseAmostra(Servico.obterServico(i+1), value)));
+                        analise.setResultado(Resultado.obterResultado(pAnalise.analiseAmostra(i+1, value)));
                         
                         analise.saveAnalise();
                     }
