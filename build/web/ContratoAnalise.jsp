@@ -23,7 +23,7 @@
             <div class="container">
                 <br />
                 <div class="row vertical-offset-100">
-                    <div class="col-md-10 col-md-offset-1">
+                    <div class="col-md-8 col-md-offset-2">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <div class="col-md-10">
@@ -54,18 +54,15 @@
                                             ${resposta}
                                         </div>
                                         <tr>
-                                            <th>Empresa</th>
-                                            <th>Cliente</th>
-                                            <th>Status</th>
-                                            <th colspan=2>Ação</th>
+                                            <th>Codigo</th>
+                                            <th>Contrato</th>
+                                            <th colspan=1>Ação</th>
                                         </tr>
-                                        <c:forEach items="${contratos}" var="contrato">
+                                        <c:forEach items="${amostras}" var="amostra">
                                             <tr>
-                                                <td><c:out value="${contrato.empresa.nome}" /></td>
-                                                <td><c:out value="${contrato.cliente.nome}" /></td>
-                                                <td><c:out value="${contrato.contratoEstado}" /></td>
-                                                <td><a class="btn btn-success btn-xs " role="button" href="FrontController?action=PrepararIniciarAnalise&codigo=<c:out value="${contrato.codigo}"/>">Iniciar</a></td>
-                                                <td><a class="btn btn-danger btn-xs " role="button" href="FrontController?action=PrepararFinalizarAnalise&codigo=<c:out value="${contrato.codigo}"/>">Finalizar</a></td>
+                                                <td><c:out value="${amostra.codigo}" /></td>
+                                                <td><c:out value="${amostra.contrato.codigo}" /></td>
+                                                <td><a class="btn btn-success btn-xs " role="button" href="FrontController?action=PrepararIniciarAnalise&codigo=<c:out value="${amostra.codigo}"/>">Analisar</a></td>
                                             </tr>
                                         </c:forEach>
                                     </table>
