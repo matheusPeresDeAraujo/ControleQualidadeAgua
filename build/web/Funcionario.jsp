@@ -36,9 +36,12 @@
                                         <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a href="FrontController?action=BuscarContrato" class="" role="button">Contrato</a></li>
-                                        <li><a href="FrontController?action=BuscarCliente" class="" role="button">Cliente</a></li>
-                                        <li><a href="FrontController?action=BuscarFuncionario" class="" role="button">Funcionario</a></li>
+                                        <li><a href="FrontController?action=BuscarContrato" class="" role="button">Contratos</a></li>
+                                        <li><a href="FrontController?action=BuscarContratoColeta" class="" role="button">Contratos Coleta</a></li>
+                                        <li><a href="FrontController?action=BuscarContratoAnalise" class="" role="button">Contratos Analise</a></li>
+                                        <li><a href="FrontController?action=BuscarContratoFechamento" class="" role="button">Contratos Fechamento</a></li>
+                                        <li><a href="FrontController?action=BuscarCliente" class="" role="button">Clientes</a></li>
+                                        <li><a href="FrontController?action=BuscarFuncionario" class="" role="button">Funcionarios</a></li>
                                         <li><a href="FrontController?action=BuscarEmpresa" class="" role="button">Empresa</a></li>
                                     </ul>
                                     <a href="FrontController?action=PrepararInserirFuncionario" class="" role="button"><img src="img/INSERT.jpg" width="36" alt="..." /></a>
@@ -61,7 +64,8 @@
                                             <tr>
                                                 <td><c:out value="${funcionario.nome}" /></td>
                                                 <td><c:if test="${funcionario.cargo == 1}"> <c:out value="PROFISSIONAL DE ANALISE" /> </c:if>
-                                                    <c:if test="${funcionario.cargo == 2}"> <c:out value="ROFISSIONAL DE COLETA" /> </c:if>
+                                                    <c:if test="${funcionario.cargo == 2}"> <c:out value="PROFISSIONAL DE COLETA" /> </c:if>
+                                                    <c:if test="${funcionario.cargo == 3}"> <c:out value="PROFISSIONAL ESPECIALISTA" /> </c:if>
                                                 </td>
                                                 <td><c:out value="${funcionario.empresa.nome}" /></td>
                                                 <td><a class="btn btn-success btn-xs " role="button" href="FrontController?action=PrepararEditarFuncionario&codigo=<c:out value="${funcionario.codigo}"/>">EDITAR</a></td>

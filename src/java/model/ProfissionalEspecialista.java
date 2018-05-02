@@ -1,11 +1,24 @@
 
 package model;
 
+import java.sql.SQLException;
+import java.util.List;
+import persistence.FuncionarioDao;
+
 public class ProfissionalEspecialista extends Funcionario{
     
-    public String calculaIqa(){  //Indice de qualidade da agua
+    
+    public static ProfissionalEspecialista obterFuncionario(int codigo) throws SQLException, ClassNotFoundException{
+        return FuncionarioDao.obterFuncionarioEspecialista(codigo);
+    }
+    
+    public String calculaIqa(List<Analise> analises){  //Indice de qualidade da agua
         
-        int resultado = 0;
+        double resultado = 0;
+        for(Analise analise : analises){
+            resultado += (analise.getResultado().getCodigo() - 1) * 0.1;
+        }
+        resultado = resultado / analises.size();
         
         if(resultado < 25){
             return "Muito Ruim";

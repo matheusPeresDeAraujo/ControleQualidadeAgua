@@ -11,6 +11,7 @@ import java.util.List;
 import model.Empresa;
 import model.Funcionario;
 import model.ProfissionalAnalise;
+import model.ProfissionalEspecialista;
 
 
 public class FuncionarioDao {
@@ -116,6 +117,35 @@ public class FuncionarioDao {
             ResultSet rs = stmt.executeQuery();
             
             ProfissionalAnalise funcionario = new ProfissionalAnalise();
+            while (rs.next()){
+                
+                funcionario.setCodigo(Integer.parseInt(rs.getString("CODIGO")));
+                funcionario.setNome(rs.getString("NOME"));
+                funcionario.setIdentificacao(rs.getString("IDENTIFICACAO"));
+                funcionario.setEmpresa(Empresa.obterEmpresa(Integer.parseInt(rs.getString("COD_EMPRESA"))));
+                funcionario.setCargo(Integer.parseInt(rs.getString("CARGO")));
+            }
+            
+            return funcionario;
+        }catch(SQLException e){
+            throw e;
+        }finally{
+            closeResources(conn, stmt);
+        }
+    }
+    
+    
+    public static ProfissionalEspecialista obterFuncionarioEspecialista(int codigo) throws SQLException, ClassNotFoundException{
+        
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try{
+            conn = DatabaseLocator.getInstance().getConnection();
+            stmt = conn.prepareStatement("SELECT * FROM FUNCIONARIO WHERE CODIGO = ?");
+            stmt.setInt(1, codigo);
+            ResultSet rs = stmt.executeQuery();
+            
+            ProfissionalEspecialista funcionario = new ProfissionalEspecialista();
             while (rs.next()){
                 
                 funcionario.setCodigo(Integer.parseInt(rs.getString("CODIGO")));

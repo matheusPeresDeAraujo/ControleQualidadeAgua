@@ -39,6 +39,7 @@
                                         <li><a href="FrontController?action=BuscarContrato" class="" role="button">Contratos</a></li>
                                         <li><a href="FrontController?action=BuscarContratoColeta" class="" role="button">Contratos Coleta</a></li>
                                         <li><a href="FrontController?action=BuscarContratoAnalise" class="" role="button">Contratos Analise</a></li>
+                                        <li><a href="FrontController?action=BuscarContratoFechamento" class="" role="button">Contratos Fechamento</a></li>
                                         <li><a href="FrontController?action=BuscarCliente" class="" role="button">Clientes</a></li>
                                         <li><a href="FrontController?action=BuscarFuncionario" class="" role="button">Funcionarios</a></li>
                                         <li><a href="FrontController?action=BuscarEmpresa" class="" role="button">Empresa</a></li>
@@ -64,8 +65,8 @@
                                                 <td><c:out value="${contrato.empresa.nome}" /></td>
                                                 <td><c:out value="${contrato.cliente.nome}" /></td>
                                                 <td><c:out value="${contrato.contratoEstado}" /></td>
-                                                <td><a class="btn btn-success btn-xs " role="button" href="FrontController?action=PrepararEditarContrato&codigo=<c:out value="${contrato.codigo}"/>">Editar</a></td>
-                                                <td><a class="btn btn-danger btn-xs " role="button" href="FrontController?action=PrepararExcluirContrato&codigo=<c:out value="${contrato.codigo}"/>">Excluir</a></td>
+                                                <td <c:if test="${!contrato.contratoEstado.equals('ABERTO')}"> hidden</c:if>><a class="btn btn-success btn-xs " role="button" href="FrontController?action=PrepararEditarContrato&codigo=<c:out value="${contrato.codigo}"/>">Editar</a></td>
+                                                <td <c:if test="${!contrato.contratoEstado.equals('ABERTO')}"> hidden</c:if>><a class="btn btn-danger btn-xs " role="button" href="FrontController?action=PrepararExcluirContrato&codigo=<c:out value="${contrato.codigo}"/>">Excluir</a></td>
                                             </tr>
                                         </c:forEach>
                                     </table>

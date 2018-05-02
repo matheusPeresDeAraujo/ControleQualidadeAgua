@@ -27,7 +27,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <div class="col-md-10">
-                                    <h3 class="panel-title">EMPRESAS</h3>
+                                    <h3 class="panel-title">CONTRATOS FINALIZAR</h3>
                                 </div>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -44,7 +44,7 @@
                                         <li><a href="FrontController?action=BuscarFuncionario" class="" role="button">Funcionarios</a></li>
                                         <li><a href="FrontController?action=BuscarEmpresa" class="" role="button">Empresa</a></li>
                                     </ul>
-                                    <a href="FrontController?action=PrepararInserirEmpresa" class="" role="button"><img src="img/INSERT.jpg" width="36" alt="..." /></a>
+                                    <a href="FrontController?action=PrepararInserirContrato" class="" role="button"><img src="img/INSERT.jpg" width="36" alt="..." /></a>
                                 </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
@@ -55,18 +55,18 @@
                                             ${resposta}
                                         </div>
                                         <tr>
-                                            <th>NOME</th>
-                                            <th>IDENTIFICACAO</th>
-                                            <th>ESTADO</th>
+                                            <th>Empresa</th>
+                                            <th>Cliente</th>
+                                            <th>Status</th>
                                             <th colspan=2>Ação</th>
                                         </tr>
-                                        <c:forEach items="${empresas}" var="empresa">
+                                        <c:forEach items="${contratos}" var="contrato">
                                             <tr>
-                                                <td><c:out value="${empresa.nome}" /></td>
-                                                <td><c:out value="${empresa.identificacao}" /></td>
-                                                <td><c:out value="${empresa.estado}" /></td>
-                                                <td><a class="btn btn-success btn-xs " role="button" href="FrontController?action=PrepararEditarEmpresa&codigo=<c:out value="${empresa.codigo}"/>">EDITAR</a></td>
-                                                <td><a class="btn btn-danger btn-xs " role="button" href="FrontController?action=PrepararExcluirEmpresa&codigo=<c:out value="${empresa.codigo}"/>">EXCLUIR</a></td>
+                                                <td><c:out value="${contrato.empresa.nome}" /></td>
+                                                <td><c:out value="${contrato.cliente.nome}" /></td>
+                                                <td><c:out value="${contrato.contratoEstado}" /></td>
+                                                <td><a class="btn btn-success btn-xs " role="button" href="FrontController?action=PrepararCalcularIqa&codigo=<c:out value="${contrato.codigo}"/>">IQA</a></td>
+                                                <td><a class="btn btn-danger btn-xs " role="button" href="FrontController?action=PrepararFinalizarContrato&codigo=<c:out value="${contrato.codigo}"/>">Finalizar</a></td>
                                             </tr>
                                         </c:forEach>
                                     </table>
