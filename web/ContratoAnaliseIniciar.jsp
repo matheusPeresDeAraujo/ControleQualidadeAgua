@@ -27,7 +27,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <div class="col-md-10">
-                                    <h3 class="panel-title">Iniciar Analise</h3>
+                                    <h3 class="panel-title">Analise</h3>
                                 </div>
                                 <div>
                                     <a href="FrontController?action=BuscarContratoAnalise" class="" role="button"><img src="img/cancelar.png" width="36" alt="..." /></a>
@@ -54,7 +54,7 @@
                                              <c:forEach items="${servicos}" var="servico">
                                                 <div class="form-group" <c:if test="${!servicosContratados.contains(servico.codigo)}"> hidden</c:if>>
                                                     <th><span>${servico.nome} </span></th>
-                                                    <input class="form-control" placeholder="" name="textServico${servico.codigo}" type="text" value=""/>
+                                                    <input class="form-control" placeholder="" name="textServicos" id="${servico.codigo}" type="text" value=""/>
                                                 </div>
                                              </c:forEach>
                                         </div>
