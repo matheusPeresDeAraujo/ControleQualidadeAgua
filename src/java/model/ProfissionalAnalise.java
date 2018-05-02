@@ -80,13 +80,13 @@ public class ProfissionalAnalise extends Funcionario{
             return 5;
         }else if(valor == 6){
             return 6;
-        }else if(valor == 6.5){
+        }else if(valor == 7){
             return 7;
-        }else if(valor == 9){
-            return 8;
-        }else if(valor == 8.5){
-            return 9;
         }else if(valor == 8){
+            return 8;
+        }else if(valor == 9){
+            return 9;
+        }else if(valor == 10){
             return 10;
         }else{
             return 11;
@@ -612,7 +612,7 @@ public class ProfissionalAnalise extends Funcionario{
             return 7;
         }else if(valor > 2){
             return 8;
-        }else if(valor > 2){
+        }else if(valor > 1){
             return 9;
         }else if(valor > 0.5){
             return 10;

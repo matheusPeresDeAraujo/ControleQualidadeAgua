@@ -171,6 +171,7 @@ public class Contrato {
     public Boolean updateContrato(HttpServletRequest request) throws SQLException, ClassNotFoundException{
             
         this.codigo = Integer.parseInt(request.getParameter("textCodigo"));
+        this.local = Contrato.obterContrato(codigo).local;
         setParameter(request);
         return ContratoDao.getInstance().update(this);  
         

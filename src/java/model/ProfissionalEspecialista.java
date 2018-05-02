@@ -20,13 +20,13 @@ public class ProfissionalEspecialista extends Funcionario{
         }
         resultado = resultado / analises.size();
         
-        if(resultado < 0.25){
+        if(resultado <= 0.25){
             return "Muito Ruim";
-        }else if(resultado < 0.50){
+        }else if(resultado <= 0.50){
             return "Ruim";
-        }else if(resultado < 0.70){
+        }else if(resultado <= 0.70){
             return "Media";
-        }else if(resultado < 0.90){
+        }else if(resultado <= 0.90){
             return "Boa";
         }else{
             return "Excelente";
