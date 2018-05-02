@@ -2,6 +2,7 @@
 package model;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import persistence.ContratoDao;
@@ -167,11 +168,11 @@ public class Contrato {
         ContratoDao.getInstance().update(contrato);
     }
     
-    public void updateContrato(HttpServletRequest request) throws SQLException, ClassNotFoundException{
+    public Boolean updateContrato(HttpServletRequest request) throws SQLException, ClassNotFoundException{
             
         this.codigo = Integer.parseInt(request.getParameter("textCodigo"));
         setParameter(request);
-        ContratoDao.getInstance().update(this);  
+        return ContratoDao.getInstance().update(this);  
         
     }
     
@@ -189,4 +190,39 @@ public class Contrato {
             this.descricao = request.getParameter("textDescricao");
         
     }
+    
+    
+    public List<Contrato> buscarContratoColeta() throws Exception{
+        
+        List<Contrato> contratos = Contrato.obterContratos();
+        List<Contrato> contratosColeta = new ArrayList<>();
+            
+        for(Contrato contrato : contratos){
+            if(contrato.getContratoEstado().equals("ABERTO")){
+                contratosColeta.add(contrato);
+            }else if(contrato.getContratoEstado().equals("EM COLETA")){
+                contratosColeta.add(contrato);
+            }else{
+                //Contrato nao precisa ser observado pelo Profissional de Coleta
+            }  
+        }
+        return contratosColeta;
+    }
+    
+    
+    public List<Contrato> buscarContratoFechamento() throws Exception{
+        
+        List<Contrato> contratos = Contrato.obterContratos();
+        List<Contrato> contratosFechamento = new ArrayList<>();
+
+        for(Contrato contrato : contratos){
+            if(contrato.getContratoEstado().equals("ANALISE FINALIZADA")){
+                contratosFechamento.add(contrato);
+            }else{
+                //Contrato nao precisa ser observado pelo Profissional de Coleta
+            }  
+        }
+
+        return contratosFechamento;
+    } 
 }

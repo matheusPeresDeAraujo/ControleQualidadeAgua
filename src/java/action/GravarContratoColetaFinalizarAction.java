@@ -8,10 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Amostra;
 import model.Contrato;
 import model.ContratoEstadoColetaFinalizada;
-import model.ContratoEstadoEmColeta;
 
 public class GravarContratoColetaFinalizarAction implements Action{
 

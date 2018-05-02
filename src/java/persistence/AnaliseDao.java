@@ -10,9 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Amostra;
 import model.Analise;
-import model.Contrato;
 import model.Funcionario;
-import model.Local;
 import model.Resultado;
 import model.Servico;
 
@@ -142,7 +140,7 @@ public class AnaliseDao {
             stmt.setInt(1, analise.getAmostra().getCodigo());
             stmt.setInt(2, analise.getServico().getCodigo());
             stmt.setInt(3, analise.getProfissionalAnalise().getCodigo());
-            stmt.setInt(4, analise.getValor());
+            stmt.setDouble(4, analise.getValor());
             stmt.setInt(5, analise.getResultado().getCodigo());
         if(analise.getCodigo() != 0){
             stmt.setInt(6, analise.getCodigo());
@@ -158,7 +156,7 @@ public class AnaliseDao {
         analise.setAmostra(Amostra.obterAmostra(Integer.parseInt(rs.getString("COD_AMOSTRA"))));
         analise.setServico(Servico.obterServico(Integer.parseInt(rs.getString("COD_SERVICO"))));
         analise.setProfissionalAnalise(Funcionario.obterFuncionario(Integer.parseInt(rs.getString("COD_PROFISSIONAL_ANALISTA"))));
-        analise.setValor(Integer.parseInt(rs.getString("VALOR")));
+        analise.setValor(Double.parseDouble(rs.getString("VALOR")));
         analise.setResultado(Resultado.obterResultado(Integer.parseInt(rs.getString("COD_RESULTADO"))));
         
         return analise;

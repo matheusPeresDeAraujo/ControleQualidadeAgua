@@ -2,10 +2,10 @@
 package model;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import persistence.AmostraDao;
-import persistence.ClienteDao;
 
 
 public class Amostra {
@@ -85,5 +85,34 @@ public class Amostra {
         this.local = this.contrato.getLocal();
         this.profissionalColeta = (Funcionario.obterFuncionario(Integer.parseInt(request.getParameter("textCodigoFuncionario"))));
         
+    }
+    
+    public List<Amostra> buscarAmostrasAnalise() throws SQLException, ClassNotFoundException, Exception{
+        
+        List<Contrato> contratos = Contrato.obterContratos();
+        List<Contrato> contratosAnalise = new ArrayList<>();
+
+        for(Contrato contrato : contratos){
+            if(contrato.getContratoEstado().equals("COLETA FINALIZADA")){
+                contratosAnalise.add(contrato);
+            }else if(contrato.getContratoEstado().equals("EM ANALISE")){
+                contratosAnalise.add(contrato);
+            }else{
+                //Contrato nao precisa ser observado pelo Profissional de Analise
+            }  
+        }
+
+        List<Amostra> amostras = Amostra.obterAmostras();
+        List<Amostra> amostrasColetaFinalizada = new ArrayList<>();
+
+        for(Amostra amostra : amostras){
+            if(contratosAnalise.contains(amostra.getContrato())){
+                amostrasColetaFinalizada.add(amostra);
+            }else{
+                //Amostra pertence a um grupo que ainda náo esta fecado. Coleta em andamento
+            }
+        }
+
+        return amostrasColetaFinalizada;
     }
 }
