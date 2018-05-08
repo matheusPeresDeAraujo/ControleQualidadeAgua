@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>LocalDao.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ControleQualidadeAgua&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">persistence</a> &gt; <span class="el_source">LocalDao.java</span></div><h1>LocalDao.java</h1><pre class="source lang-java linenums">
+package persistence;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import model.Local;
+
+public class LocalDao {
+    
+    
+<span class="fc" id="L14">    private static LocalDao instance = new LocalDao();</span>
+<span class="fc" id="L15">    private LocalDao(){}</span>
+<span class="nc" id="L16">    public static LocalDao getInstance(){return instance;}</span>
+    
+    public int save(Local local) throws SQLException, ClassNotFoundException{
+        
+<span class="nc" id="L20">        Connection conn = null;</span>
+<span class="nc" id="L21">        PreparedStatement stmt = null;</span>
+<span class="nc" id="L22">        Statement st = null;</span>
+        
+        try{
+<span class="nc" id="L25">            conn = DatabaseLocator.getInstance().getConnection();</span>
+<span class="nc" id="L26">            stmt = conn.prepareStatement(&quot;INSERT INTO LOCAL (LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO, CIDADE, ESTADO) VALUES (?, ?, ?, ? ,? ,?)&quot;);</span>
+<span class="nc" id="L27">            parseAtributos(stmt, local);</span>
+            
+<span class="nc" id="L29">            st = conn.createStatement();</span>
+<span class="nc" id="L30">            ResultSet rs = st.executeQuery(&quot;SELECT MAX(CODIGO) AS MAX FROM LOCAL&quot;);</span>
+<span class="nc" id="L31">            rs.next();</span>
+<span class="nc" id="L32">            String codigo = rs.getString(&quot;MAX&quot;);</span>
+<span class="nc" id="L33">            return Integer.parseInt(codigo);</span>
+            
+<span class="nc" id="L35">        }catch(SQLException e){</span>
+<span class="nc" id="L36">            throw e;</span>
+        }finally{
+<span class="nc" id="L38">            closeResources(conn, stmt);</span>
+        }
+    }
+      
+    
+    public void drop(int codigo) throws SQLException, ClassNotFoundException{
+        
+<span class="nc" id="L45">        Connection conn = null;</span>
+<span class="nc" id="L46">        PreparedStatement stmt = null;</span>
+        
+        try{
+<span class="nc" id="L49">            conn = DatabaseLocator.getInstance().getConnection();</span>
+<span class="nc" id="L50">            stmt = conn.prepareStatement(&quot;DELETE FROM LOCAL WHERE CODIGO = ?&quot;);</span>
+<span class="nc" id="L51">            stmt.setInt(1, codigo);</span>
+<span class="nc" id="L52">            stmt.execute();</span>
+        
+<span class="nc" id="L54">        }catch(SQLException e){</span>
+<span class="nc" id="L55">            throw e;</span>
+        }finally{
+<span class="nc" id="L57">            closeResources(conn, stmt);</span>
+<span class="nc" id="L58">        }</span>
+<span class="nc" id="L59">    }</span>
+     
+    
+    public static Local obterLocal(int codigo) throws SQLException, ClassNotFoundException{
+        
+<span class="fc" id="L64">        Connection conn = null;</span>
+<span class="fc" id="L65">        PreparedStatement stmt = null;</span>
+<span class="fc" id="L66">        Local local = null;</span>
+        try{
+<span class="fc" id="L68">            conn = DatabaseLocator.getInstance().getConnection();</span>
+<span class="fc" id="L69">            stmt = conn.prepareStatement(&quot;SELECT * FROM LOCAL WHERE CODIGO = ?&quot;);</span>
+<span class="fc" id="L70">            stmt.setInt(1, codigo);</span>
+<span class="fc" id="L71">            ResultSet rs = stmt.executeQuery();</span>
+            
+<span class="fc bfc" id="L73" title="All 2 branches covered.">            while (rs.next()){</span>
+<span class="fc" id="L74">                local = instanciaLocal(rs);</span>
+            }
+            
+<span class="fc" id="L77">            return local;</span>
+<span class="nc" id="L78">        }catch(SQLException e){</span>
+<span class="nc" id="L79">            throw e;</span>
+        }finally{
+<span class="pc" id="L81">            closeResources(conn, stmt);</span>
+        }
+    } 
+    
+    
+    public static void closeResources (Connection conn, Statement st) throws SQLException{
+        try{
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">            if(st!=null) st.close();</span>
+<span class="pc bpc" id="L89" title="1 of 2 branches missed.">            if(conn!=null) conn.close();</span>
+<span class="nc" id="L90">        }catch(SQLException e){</span>
+<span class="nc" id="L91">            throw e;</span>
+<span class="fc" id="L92">        }</span>
+<span class="fc" id="L93">    }</span>
+    
+    
+    private static void parseAtributos(PreparedStatement stmt , Local local) throws SQLException{
+<span class="nc" id="L97">        stmt.setString(1, local.getLogradouro());</span>
+<span class="nc" id="L98">        stmt.setInt(2, local.getNumero());</span>
+<span class="nc" id="L99">        stmt.setString(3, local.getComplemento());</span>
+<span class="nc" id="L100">        stmt.setString(4, local.getBairro());</span>
+<span class="nc" id="L101">        stmt.setString(5, local.getCidade());</span>
+<span class="nc" id="L102">        stmt.setString(6, local.getEstado());</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        if(local.getCodigo() != 0){</span>
+<span class="nc" id="L104">            stmt.setInt(7, local.getCodigo());</span>
+        }
+<span class="nc" id="L106">        stmt.execute();</span>
+<span class="nc" id="L107">    }</span>
+    
+    
+    private static Local instanciaLocal(ResultSet rs) throws SQLException{
+        
+<span class="fc" id="L112">        Local local = new Local();</span>
+<span class="fc" id="L113">        local.setCodigo(Integer.parseInt(rs.getString(&quot;CODIGO&quot;)));</span>
+<span class="fc" id="L114">        local.setLogradouro(rs.getString(&quot;LOGRADOURO&quot;));</span>
+<span class="fc" id="L115">        local.setNumero(Integer.parseInt(rs.getString(&quot;NUMERO&quot;)));</span>
+<span class="fc" id="L116">        local.setComplemento(rs.getString(&quot;COMPLEMENTO&quot;));</span>
+<span class="fc" id="L117">        local.setBairro(rs.getString(&quot;BAIRRO&quot;));</span>
+<span class="fc" id="L118">        local.setCidade(rs.getString(&quot;CIDADE&quot;));</span>
+<span class="fc" id="L119">        local.setEstado(rs.getString(&quot;ESTADO&quot;));</span>
+        
+<span class="fc" id="L121">        return local;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

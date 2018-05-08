@@ -164,21 +164,28 @@ public class FuncionarioDao {
     }
     
     
-    public void update(Funcionario funcionario) throws SQLException, ClassNotFoundException{
+    public boolean update(Funcionario funcionario) throws SQLException, ClassNotFoundException{
         
         Connection conn = null;
         PreparedStatement stmt = null;
+        Boolean retorno = true;
         
         try{
             conn = DatabaseLocator.getInstance().getConnection();
-            stmt = conn.prepareStatement("UPDATE FUNCIONARIO SET NOME = ?, IDENTIFICACAO = ?, COD_EMPRESA = ?, CARGO = ? WHERE CODIGO = ?");
+            stmt = conn.prepareStatement("UPDATE FUNCIONARIO SET "
+                    + "NOME = ?, "
+                    + "IDENTIFICACAO = ?, "
+                    + "COD_EMPRESA = ?, "
+                    + "CARGO = ? WHERE CODIGO = ?");
             parseAtributos(stmt, funcionario);
         
         }catch(SQLException e){
+            retorno = false;
             throw e;
         }finally{
             closeResources(conn, stmt);
         }
+        return retorno;
     }
     
     

@@ -80,11 +80,11 @@ public class Funcionario {
         
     }
     
-    public void updateFuncionario(HttpServletRequest request) throws SQLException, ClassNotFoundException{
+    public boolean updateFuncionario(HttpServletRequest request) throws SQLException, ClassNotFoundException{
             
         this.codigo = Integer.parseInt(request.getParameter("textCodigo"));
         setParameter(request);
-        FuncionarioDao.getInstance().update(this);  
+        return FuncionarioDao.getInstance().update(this);  
         
     }
     

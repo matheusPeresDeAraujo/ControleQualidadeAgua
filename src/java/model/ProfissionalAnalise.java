@@ -14,7 +14,6 @@ public class ProfissionalAnalise extends Funcionario{
     
     public Integer analiseAmostra(double codigoServico, double valor){
         
-        
         if(codigoServico == 1){
             return analisaPh(valor);
         }else if(codigoServico == 2){
@@ -68,25 +67,25 @@ public class ProfissionalAnalise extends Funcionario{
     
     public Integer analisaPh(double valor){
         
-        if(valor == 1){
+        if(valor <= 1){
             return 1;
-        }else if(valor == 2){
+        }else if(valor <= 2){
             return 2;
-        }else if(valor == 3){
+        }else if(valor <= 3){
             return 3;
-        }else if(valor == 4){
+        }else if(valor <= 4){
             return 4;
-        }else if(valor == 5){
+        }else if(valor <= 5){
             return 5;
-        }else if(valor == 6){
+        }else if(valor <= 6){
             return 6;
-        }else if(valor == 7){
+        }else if(valor <= 7){
             return 7;
-        }else if(valor == 8){
+        }else if(valor <= 8){
             return 8;
-        }else if(valor == 9){
+        }else if(valor <= 9){
             return 9;
-        }else if(valor == 10){
+        }else if(valor <= 10){
             return 10;
         }else{
             return 11;
@@ -227,7 +226,6 @@ public class ProfissionalAnalise extends Funcionario{
         }else{
             return 11;
         }
-        
     }
     
     public Integer analisaCloretos(double valor){
@@ -255,7 +253,6 @@ public class ProfissionalAnalise extends Funcionario{
         }else{
             return 11;
         }
-        
     }
     
     public Integer analisaDetergentes(double valor){
@@ -283,7 +280,6 @@ public class ProfissionalAnalise extends Funcionario{
         }else{
             return 11;
         }
-        
     }
     
     public Integer analisaDurezaAlcalinidade(double valor){
@@ -311,7 +307,6 @@ public class ProfissionalAnalise extends Funcionario{
         }else{
             return 11;
         }
-        
     }
     
     public Integer analisaSolidosDissolvidos(double valor){
@@ -339,7 +334,6 @@ public class ProfissionalAnalise extends Funcionario{
         }else{
             return 11;
         }
-        
     }
     
     public Integer analisaPraguicidas(double valor){
@@ -367,7 +361,6 @@ public class ProfissionalAnalise extends Funcionario{
         }else{
             return 11;
         }
-        
     }
     
     public Integer analisaGraxasAzeites(double valor){
@@ -394,8 +387,7 @@ public class ProfissionalAnalise extends Funcionario{
             return 10;
         }else{
             return 11;
-        }
-        
+        } 
     }
     
     public Integer analisaSulfatos(double valor){
@@ -423,7 +415,6 @@ public class ProfissionalAnalise extends Funcionario{
         }else{
             return 11;
         }
-        
     }
     
     public Integer analisaNitratos(double valor){
@@ -451,7 +442,6 @@ public class ProfissionalAnalise extends Funcionario{
         }else{
             return 11;
         }
-        
     }
     
     public Integer analisaCianetos(double valor){
@@ -507,7 +497,6 @@ public class ProfissionalAnalise extends Funcionario{
         }else{
             return 11;
         }
-        
     }
     
     public Integer analisaMagnesio(double valor){
@@ -534,8 +523,7 @@ public class ProfissionalAnalise extends Funcionario{
             return 10;
         }else{
             return 11;
-        }
-        
+        } 
     }
     
     public Integer analisaFosfatos(double valor){
@@ -563,7 +551,6 @@ public class ProfissionalAnalise extends Funcionario{
         }else{
             return 11;
         }
-        
     }
     
     public Integer analisaNitritos(double valor){
@@ -591,7 +578,6 @@ public class ProfissionalAnalise extends Funcionario{
         }else{
             return 11;
         }
-        
     }
     
     public Integer analisaDbo(double valor){
@@ -605,7 +591,7 @@ public class ProfissionalAnalise extends Funcionario{
         }else if(valor > 8){
             return 4;
         }else if(valor > 6){
-            return 56;
+            return 5;
         }else if(valor > 5){
             return 6;
         }else if(valor > 4){
@@ -619,7 +605,6 @@ public class ProfissionalAnalise extends Funcionario{
         }else{
             return 11;
         }
-        
     }
     
     public Integer analisaCor(double valor){
@@ -647,7 +632,6 @@ public class ProfissionalAnalise extends Funcionario{
         }else{
             return 11;
         }
-        
     }
     
     public Integer analisaTurbidez(double valor){
@@ -675,7 +659,6 @@ public class ProfissionalAnalise extends Funcionario{
         }else{
             return 11;
         }
-        
     }
     
     public Integer analisaSodio(double valor){
@@ -703,7 +686,6 @@ public class ProfissionalAnalise extends Funcionario{
         }else{
             return 11;
         }
-        
     }
     
     public Integer analisaCalcio(double valor){
@@ -731,10 +713,5 @@ public class ProfissionalAnalise extends Funcionario{
         }else{
             return 11;
         }
-        
-    }
-    
-    
-    
-    
+    }  
 }

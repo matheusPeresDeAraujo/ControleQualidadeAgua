@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ContratoEstadoDao.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ControleQualidadeAgua&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">persistence</a> &gt; <span class="el_source">ContratoEstadoDao.java</span></div><h1>ContratoEstadoDao.java</h1><pre class="source lang-java linenums">
+package persistence;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ContratoEstadoDao {
+    
+    
+<span class="nc" id="L14">    private static ContratoEstadoDao instance = new ContratoEstadoDao();</span>
+<span class="nc" id="L15">    private ContratoEstadoDao(){}</span>
+<span class="nc" id="L16">    public static ContratoEstadoDao getInstance(){return instance;}</span>
+    
+    public static List&lt;String&gt; obterContratoEstados() throws SQLException, ClassNotFoundException{
+        
+<span class="nc" id="L20">        Connection conn = null;</span>
+<span class="nc" id="L21">        Statement st = null;</span>
+<span class="nc" id="L22">        List&lt;String&gt; contratoEstado = new ArrayList&lt;&gt;();</span>
+        try{
+<span class="nc" id="L24">            conn = DatabaseLocator.getInstance().getConnection();</span>
+<span class="nc" id="L25">            st = conn.createStatement();</span>
+<span class="nc" id="L26">            ResultSet rs = st.executeQuery(&quot;SELECT DESCRICAO FROM CONTRATO_ESTADO&quot;);</span>
+            
+<span class="nc bnc" id="L28" title="All 2 branches missed.">            while(rs.next()){</span>
+<span class="nc" id="L29">                contratoEstado.add(rs.getString(&quot;DESCRICAO&quot;));</span>
+            }
+<span class="nc" id="L31">            return contratoEstado;</span>
+<span class="nc" id="L32">        }catch(SQLException e){</span>
+<span class="nc" id="L33">            throw e;</span>
+        }finally{
+<span class="nc" id="L35">            closeResources(conn, st);</span>
+        }
+    }
+    
+    
+    public static void closeResources (Connection conn, Statement st) throws SQLException{
+        try{
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            if(st!=null) st.close();</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            if(conn!=null) conn.close();</span>
+<span class="nc" id="L44">        }catch(SQLException e){</span>
+<span class="nc" id="L45">            throw e;</span>
+<span class="nc" id="L46">        }</span>
+<span class="nc" id="L47">    }</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

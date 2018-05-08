@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ContratoServicoDao.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ControleQualidadeAgua&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">persistence</a> &gt; <span class="el_source">ContratoServicoDao.java</span></div><h1>ContratoServicoDao.java</h1><pre class="source lang-java linenums">
+package persistence;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import model.ContratoServico;
+
+public class ContratoServicoDao {
+    
+<span class="nc" id="L15">    private static ContratoServicoDao instance = new ContratoServicoDao();</span>
+<span class="nc" id="L16">    private ContratoServicoDao(){}</span>
+<span class="nc" id="L17">    public static ContratoServicoDao getInstance(){return instance;}</span>
+    
+    public void save(ContratoServico contratoServico) throws SQLException, ClassNotFoundException{
+        
+<span class="nc" id="L21">        Connection conn = null;</span>
+<span class="nc" id="L22">        PreparedStatement stmt = null;</span>
+        
+        try{
+<span class="nc" id="L25">            conn = DatabaseLocator.getInstance().getConnection();</span>
+<span class="nc" id="L26">            stmt = conn.prepareStatement(&quot;INSERT INTO CONTRATO_SERVICO (COD_CONTRATO, COD_SERVICO) VALUES (?, ?)&quot;);</span>
+<span class="nc" id="L27">            parseAtributos(stmt, contratoServico);</span>
+            
+<span class="nc" id="L29">        }catch(SQLException e){</span>
+<span class="nc" id="L30">            throw e;</span>
+        }finally{
+<span class="nc" id="L32">            closeResources(conn, stmt);</span>
+<span class="nc" id="L33">        }</span>
+<span class="nc" id="L34">    }</span>
+      
+    
+    public void drop(int codigo) throws SQLException, ClassNotFoundException{
+        
+<span class="nc" id="L39">        Connection conn = null;</span>
+<span class="nc" id="L40">        PreparedStatement stmt = null;</span>
+        
+        try{
+<span class="nc" id="L43">            conn = DatabaseLocator.getInstance().getConnection();</span>
+<span class="nc" id="L44">            stmt = conn.prepareStatement(&quot;DELETE FROM CONTRATO_SERVICO WHERE COD_CONTRATO = ?&quot;);</span>
+<span class="nc" id="L45">            stmt.setInt(1, codigo);</span>
+<span class="nc" id="L46">            stmt.execute();</span>
+        
+<span class="nc" id="L48">        }catch(SQLException e){</span>
+<span class="nc" id="L49">            throw e;</span>
+        }finally{
+<span class="nc" id="L51">            closeResources(conn, stmt);</span>
+<span class="nc" id="L52">        }</span>
+<span class="nc" id="L53">    }</span>
+     
+    
+    public static List&lt;Integer&gt; obterContratoServicos(Integer codigo) throws Exception{
+<span class="nc" id="L57">        Connection conn = null;</span>
+<span class="nc" id="L58">        PreparedStatement stmt = null;</span>
+<span class="nc" id="L59">        List&lt;Integer&gt; servicos = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="nc" id="L61">            conn = DatabaseLocator.getInstance().getConnection();</span>
+<span class="nc" id="L62">            stmt = conn.prepareStatement(&quot;SELECT COD_SERVICO FROM CONTRATO_SERVICO WHERE COD_CONTRATO = ?&quot;);</span>
+<span class="nc" id="L63">            stmt.setInt(1, codigo);</span>
+<span class="nc" id="L64">            ResultSet rs = stmt.executeQuery();</span>
+            
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            while(rs.next()){</span>
+<span class="nc" id="L67">                servicos.add(Integer.parseInt(rs.getString(&quot;COD_SERVICO&quot;)));</span>
+            }
+            
+<span class="nc" id="L70">            return servicos;</span>
+<span class="nc" id="L71">        } catch (Exception e) {</span>
+<span class="nc" id="L72">            throw e;</span>
+        }finally{
+<span class="nc" id="L74">            closeResources(conn, stmt);</span>
+        }
+    } 
+    
+    
+    public static void closeResources (Connection conn, Statement st) throws SQLException{
+        try{
+<span class="nc bnc" id="L81" title="All 2 branches missed.">            if(st!=null) st.close();</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            if(conn!=null) conn.close();</span>
+<span class="nc" id="L83">        }catch(SQLException e){</span>
+<span class="nc" id="L84">            throw e;</span>
+<span class="nc" id="L85">        }</span>
+<span class="nc" id="L86">    }</span>
+    
+    
+    private static void parseAtributos(PreparedStatement stmt , ContratoServico contratoServico) throws SQLException{
+<span class="nc" id="L90">        stmt.setInt(1, contratoServico.getContrato().getCodigo());</span>
+<span class="nc" id="L91">        stmt.setInt(2, contratoServico.getServico().getCodigo());</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        if(contratoServico.getCodigo() != 0){</span>
+<span class="nc" id="L93">            stmt.setInt(3, contratoServico.getCodigo());</span>
+        }
+<span class="nc" id="L95">        stmt.execute();</span>
+<span class="nc" id="L96">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

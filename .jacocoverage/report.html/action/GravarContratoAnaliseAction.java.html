@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>GravarContratoAnaliseAction.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ControleQualidadeAgua&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">action</a> &gt; <span class="el_source">GravarContratoAnaliseAction.java</span></div><h1>GravarContratoAnaliseAction.java</h1><pre class="source lang-java linenums">
+package action;
+
+import controller.Action;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import model.Amostra;
+import model.Analise;
+import model.Contrato;
+import model.ContratoEstadoAnaliseFinalizada;
+import model.ContratoEstadoEmAnalise;
+import model.ProfissionalAnalise;
+import model.Resultado;
+import model.Servico;
+
+<span class="nc" id="L22">public class GravarContratoAnaliseAction implements Action{</span>
+
+    @Override
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        
+<span class="nc bnc" id="L27" title="All 2 branches missed.">        if(     request.getParameter(&quot;textCodigoAmostra&quot;).equals(&quot;&quot;)){</span>
+            
+<span class="nc" id="L29">            request.setAttribute(&quot;resposta&quot;, &quot;Alteração recusada&quot;);</span>
+            
+        } else{
+            try {
+                
+<span class="nc" id="L34">                String[] servicos = request.getParameterValues(&quot;textServicos&quot;); // Resulta em todos os servicos exitententes ordenados de 0 ate limite</span>
+                
+<span class="nc bnc" id="L36" title="All 2 branches missed.">                for(int i = 0; i &lt; Servico.obterServicos().size(); i++){</span>
+                    
+<span class="nc bnc" id="L38" title="All 2 branches missed.">                    if(!servicos[i].equals(&quot;&quot;)){</span>
+                        
+<span class="nc" id="L40">                        double value = Double.parseDouble(servicos[i]);</span>
+                        
+<span class="nc" id="L42">                        Analise analise = new Analise();</span>
+<span class="nc" id="L43">                        analise.setAmostra(Amostra.obterAmostra(Integer.parseInt(request.getParameter(&quot;textCodigoAmostra&quot;))));</span>
+<span class="nc" id="L44">                        analise.setServico(Servico.obterServico(i+1));</span>
+<span class="nc" id="L45">                        ProfissionalAnalise pAnalise = ProfissionalAnalise.obterFuncionario(Integer.parseInt(request.getParameter(&quot;textCodigoFuncionario&quot;)));</span>
+<span class="nc" id="L46">                        analise.setProfissionalAnalise(pAnalise);</span>
+<span class="nc" id="L47">                        analise.setValor(value);</span>
+<span class="nc" id="L48">                        analise.setResultado(Resultado.obterResultado(pAnalise.analiseAmostra(i+1, value)));</span>
+                        
+<span class="nc" id="L50">                        analise.saveAnalise();</span>
+                    }
+                }
+                
+                
+<span class="nc" id="L55">                Contrato contrato = (Amostra.obterAmostra(Integer.parseInt(request.getParameter(&quot;textCodigoAmostra&quot;))).getContrato());</span>
+<span class="nc" id="L56">                contrato.setContratoEstado(new ContratoEstadoEmAnalise());</span>
+<span class="nc" id="L57">                contrato.updateContrato(contrato);</span>
+                
+<span class="nc" id="L59">                List&lt;Amostra&gt; amostras = Amostra.obterAmostras();</span>
+<span class="nc" id="L60">                List&lt;Analise&gt; analises = Analise.obterAnalises();</span>
+<span class="nc" id="L61">                List&lt;Integer&gt; amostrasContrato = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L62">                List&lt;Integer&gt; analisesCodAmostra = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">                for(Amostra amostra : amostras){</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">                    if(amostra.getContrato().getCodigo() == contrato.getCodigo()){</span>
+<span class="nc" id="L65">                        amostrasContrato.add(amostra.getCodigo());</span>
+                    }
+<span class="nc" id="L67">                }</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">                for(Analise analise : analises){</span>
+<span class="nc" id="L69">                    analisesCodAmostra.add(analise.getAmostra().getCodigo());</span>
+<span class="nc" id="L70">                }</span>
+                
+<span class="nc bnc" id="L72" title="All 2 branches missed.">                if(analisesCodAmostra.containsAll(amostrasContrato)){</span>
+<span class="nc" id="L73">                    contrato.setContratoEstado(new ContratoEstadoAnaliseFinalizada());</span>
+<span class="nc" id="L74">                    contrato.updateContrato(contrato);</span>
+                }
+                
+<span class="nc" id="L77">            } catch (SQLException | ClassNotFoundException ex) {</span>
+<span class="nc" id="L78">                Logger.getLogger(GravarContratoAnaliseAction.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L79">            }</span>
+        }
+        
+<span class="nc" id="L82">        BuscarContratoAnaliseAction buscarContratoAnalise = new BuscarContratoAnaliseAction();</span>
+<span class="nc" id="L83">        buscarContratoAnalise.execute(request, response);</span>
+        
+<span class="nc" id="L85">    } </span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

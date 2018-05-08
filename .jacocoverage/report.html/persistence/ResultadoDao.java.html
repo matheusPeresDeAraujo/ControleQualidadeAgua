@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ResultadoDao.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ControleQualidadeAgua&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">persistence</a> &gt; <span class="el_source">ResultadoDao.java</span></div><h1>ResultadoDao.java</h1><pre class="source lang-java linenums">
+package persistence;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import model.Resultado;
+public class ResultadoDao {
+    
+    
+<span class="nc" id="L13">    private static ResultadoDao instance = new ResultadoDao();</span>
+<span class="nc" id="L14">    private ResultadoDao(){}</span>
+<span class="nc" id="L15">    public static ResultadoDao getInstance(){return instance;}</span>
+    
+    
+    public static Resultado obterResultado(int codigo) throws SQLException, ClassNotFoundException{
+        
+<span class="nc" id="L20">        Connection conn = null;</span>
+<span class="nc" id="L21">        PreparedStatement stmt = null;</span>
+<span class="nc" id="L22">        Resultado resultado = null;</span>
+        try{
+<span class="nc" id="L24">            conn = DatabaseLocator.getInstance().getConnection();</span>
+<span class="nc" id="L25">            stmt = conn.prepareStatement(&quot;SELECT * FROM TERMO_RESULTADO_QUALITATIVO WHERE CODIGO = ?&quot;);</span>
+<span class="nc" id="L26">            stmt.setInt(1, codigo);</span>
+<span class="nc" id="L27">            ResultSet rs = stmt.executeQuery();</span>
+            
+<span class="nc bnc" id="L29" title="All 2 branches missed.">            while (rs.next()){</span>
+<span class="nc" id="L30">                resultado = instanciaResultado(rs);</span>
+            }
+            
+<span class="nc" id="L33">            return resultado;</span>
+<span class="nc" id="L34">        }catch(SQLException e){</span>
+<span class="nc" id="L35">            throw e;</span>
+        }finally{
+<span class="nc" id="L37">            closeResources(conn, stmt);</span>
+        }
+    }
+    
+    
+    public static void closeResources (Connection conn, Statement st) throws SQLException{
+        try{
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            if(st!=null) st.close();</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            if(conn!=null) conn.close();</span>
+<span class="nc" id="L46">        }catch(SQLException e){</span>
+<span class="nc" id="L47">            throw e;</span>
+<span class="nc" id="L48">        }</span>
+<span class="nc" id="L49">    }</span>
+    
+    
+    private static Resultado instanciaResultado(ResultSet rs) throws SQLException{
+        
+<span class="nc" id="L54">        Resultado resultado = new Resultado();</span>
+<span class="nc" id="L55">        resultado.setCodigo(Integer.parseInt(rs.getString(&quot;CODIGO&quot;)));</span>
+<span class="nc" id="L56">        resultado.setNome(rs.getString(&quot;NOME&quot;));</span>
+        
+<span class="nc" id="L58">        return resultado;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

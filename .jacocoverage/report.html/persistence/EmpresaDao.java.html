@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>EmpresaDao.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ControleQualidadeAgua&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">persistence</a> &gt; <span class="el_source">EmpresaDao.java</span></div><h1>EmpresaDao.java</h1><pre class="source lang-java linenums">
+package persistence;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import model.Empresa;
+
+
+public class EmpresaDao {
+<span class="fc" id="L15">    private static EmpresaDao instance = new EmpresaDao();</span>
+<span class="fc" id="L16">    private EmpresaDao(){}</span>
+<span class="nc" id="L17">    public static EmpresaDao getInstance(){return instance;}</span>
+    
+    
+    public void save(Empresa empresa) throws SQLException, ClassNotFoundException{
+        
+<span class="nc" id="L22">        Connection conn = null;</span>
+<span class="nc" id="L23">        PreparedStatement stmt = null;</span>
+        
+        try{
+<span class="nc" id="L26">            conn = DatabaseLocator.getInstance().getConnection();</span>
+<span class="nc" id="L27">            stmt = conn.prepareStatement(&quot;INSERT INTO EMPRESA &quot;</span>
+                    + &quot;(NOME, IDENTIFICACAO, LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO, CIDADE, ESTADO, PAIS) &quot;
+                    + &quot;VALUES (?,?,?,?,?,?,?,?,?)&quot;);
+<span class="nc" id="L30">            parseAtributos(stmt, empresa);</span>
+            
+<span class="nc" id="L32">        }catch(SQLException e){</span>
+<span class="nc" id="L33">            throw e;</span>
+        }finally{
+<span class="nc" id="L35">            closeResources(conn, stmt);</span>
+<span class="nc" id="L36">        }</span>
+<span class="nc" id="L37">    }</span>
+      
+    
+    public void drop(int codigo) throws SQLException, ClassNotFoundException{
+        
+<span class="nc" id="L42">        Connection conn = null;</span>
+<span class="nc" id="L43">        PreparedStatement stmt = null;</span>
+        
+        try{
+<span class="nc" id="L46">            conn = DatabaseLocator.getInstance().getConnection();</span>
+<span class="nc" id="L47">            stmt = conn.prepareStatement(&quot;DELETE FROM EMPRESA WHERE CODIGO = ?&quot;);</span>
+<span class="nc" id="L48">            stmt.setInt(1, codigo);</span>
+<span class="nc" id="L49">            stmt.execute();</span>
+        
+<span class="nc" id="L51">        }catch(SQLException e){</span>
+<span class="nc" id="L52">            throw e;</span>
+        }finally{
+<span class="nc" id="L54">            closeResources(conn, stmt);</span>
+<span class="nc" id="L55">        }</span>
+<span class="nc" id="L56">    }</span>
+    
+    
+    public static List&lt;Empresa&gt; obterEmpresas() throws SQLException, ClassNotFoundException{
+        
+<span class="nc" id="L61">        Connection conn = null;</span>
+<span class="nc" id="L62">        Statement st = null;</span>
+<span class="nc" id="L63">        List&lt;Empresa&gt; empresas = new ArrayList&lt;&gt;();</span>
+        try{
+<span class="nc" id="L65">            conn = DatabaseLocator.getInstance().getConnection();</span>
+<span class="nc" id="L66">            st = conn.createStatement();</span>
+<span class="nc" id="L67">            ResultSet rs = st.executeQuery(&quot;SELECT * FROM EMPRESA&quot;);</span>
+            
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            while (rs.next()){</span>
+<span class="nc" id="L70">                empresas.add(instanciaEmpresa(rs));</span>
+            }
+            
+<span class="nc" id="L73">            return empresas;</span>
+<span class="nc" id="L74">        }catch(SQLException e){</span>
+<span class="nc" id="L75">            throw e;</span>
+        }finally{
+<span class="nc" id="L77">            closeResources(conn, st);</span>
+        }
+    }
+    
+    
+    public static Empresa obterEmpresa(int codigo) throws SQLException, ClassNotFoundException{
+        
+<span class="fc" id="L84">        Connection conn = null;</span>
+<span class="fc" id="L85">        PreparedStatement stmt = null;</span>
+<span class="fc" id="L86">        Empresa empresa = null;</span>
+        try{
+<span class="fc" id="L88">            conn = DatabaseLocator.getInstance().getConnection();</span>
+<span class="fc" id="L89">            stmt = conn.prepareStatement(&quot;SELECT * FROM EMPRESA WHERE CODIGO = ?&quot;);</span>
+<span class="fc" id="L90">            stmt.setInt(1, codigo);</span>
+<span class="fc" id="L91">            ResultSet rs = stmt.executeQuery();</span>
+            
+<span class="fc bfc" id="L93" title="All 2 branches covered.">            while (rs.next()){</span>
+<span class="fc" id="L94">                empresa = instanciaEmpresa(rs);</span>
+            }
+            
+<span class="fc" id="L97">            return empresa;</span>
+<span class="nc" id="L98">        }catch(SQLException e){</span>
+<span class="nc" id="L99">            throw e;</span>
+        }finally{
+<span class="pc" id="L101">            closeResources(conn, stmt);</span>
+        }
+    }
+    
+    
+    public void update(Empresa empresa) throws SQLException, ClassNotFoundException{
+        
+<span class="nc" id="L108">        Connection conn = null;</span>
+<span class="nc" id="L109">        PreparedStatement stmt = null;</span>
+        
+        try{
+<span class="nc" id="L112">            conn = DatabaseLocator.getInstance().getConnection();</span>
+<span class="nc" id="L113">            stmt = conn.prepareStatement(&quot;UPDATE EMPRESA SET NOME = ?, IDENTIFICACAO = ?, LOGRADOURO = ?, NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ?, CIDADE = ?, ESTADO = ?, PAIS = ? WHERE CODIGO = ?&quot;);</span>
+<span class="nc" id="L114">            parseAtributos(stmt, empresa);</span>
+        
+<span class="nc" id="L116">        }catch(SQLException e){</span>
+<span class="nc" id="L117">            throw e;</span>
+        }finally{
+<span class="nc" id="L119">            closeResources(conn, stmt);</span>
+<span class="nc" id="L120">        }</span>
+<span class="nc" id="L121">    }</span>
+    
+    
+    public static void closeResources (Connection conn, Statement st) throws SQLException{
+        try{
+<span class="pc bpc" id="L126" title="1 of 2 branches missed.">            if(st!=null) st.close();</span>
+<span class="pc bpc" id="L127" title="1 of 2 branches missed.">            if(conn!=null) conn.close();</span>
+<span class="nc" id="L128">        }catch(SQLException e){</span>
+<span class="nc" id="L129">            throw e;</span>
+<span class="fc" id="L130">        }</span>
+<span class="fc" id="L131">    }</span>
+    
+    
+    private static void parseAtributos(PreparedStatement stmt, Empresa empresa) throws SQLException{
+<span class="nc" id="L135">            stmt.setString(1, empresa.getNome());</span>
+<span class="nc" id="L136">            stmt.setString(2, empresa.getIdentificacao());</span>
+<span class="nc" id="L137">            stmt.setString(3, empresa.getLogradouro());</span>
+<span class="nc" id="L138">            stmt.setInt(4, empresa.getNumero());</span>
+<span class="nc" id="L139">            stmt.setString(5, empresa.getComplemento());</span>
+<span class="nc" id="L140">            stmt.setString(6, empresa.getBairro());</span>
+<span class="nc" id="L141">            stmt.setString(7, empresa.getCidade());</span>
+<span class="nc" id="L142">            stmt.setString(8, empresa.getEstado());</span>
+<span class="nc" id="L143">            stmt.setString(9, empresa.getPais());</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">        if(empresa.getCodigo() != 0){</span>
+<span class="nc" id="L145">            stmt.setInt(10, empresa.getCodigo());</span>
+        }
+<span class="nc" id="L147">            stmt.execute();</span>
+<span class="nc" id="L148">    }</span>
+    
+    
+    private static Empresa instanciaEmpresa(ResultSet rs) throws SQLException{
+        
+<span class="fc" id="L153">        Empresa empresa = new Empresa();</span>
+<span class="fc" id="L154">        empresa.setCodigo(Integer.parseInt(rs.getString(&quot;CODIGO&quot;)));</span>
+<span class="fc" id="L155">        empresa.setNome(rs.getString(&quot;NOME&quot;));</span>
+<span class="fc" id="L156">        empresa.setIdentificacao(rs.getString(&quot;IDENTIFICACAO&quot;));</span>
+<span class="fc" id="L157">        empresa.setLogradouro(rs.getString(&quot;LOGRADOURO&quot;));</span>
+<span class="fc" id="L158">        empresa.setNumero(rs.getInt(&quot;NUMERO&quot;));</span>
+<span class="fc" id="L159">        empresa.setComplemento(rs.getString(&quot;COMPLEMENTO&quot;));</span>
+<span class="fc" id="L160">        empresa.setBairro(rs.getString(&quot;BAIRRO&quot;));</span>
+<span class="fc" id="L161">        empresa.setCidade(rs.getString(&quot;CIDADE&quot;));</span>
+<span class="fc" id="L162">        empresa.setEstado(rs.getString(&quot;ESTADO&quot;));</span>
+<span class="fc" id="L163">        empresa.setPais(rs.getString(&quot;PAIS&quot;));</span>
+        
+<span class="fc" id="L165">        return empresa;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ProfissionalAnalise.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ControleQualidadeAgua&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">ProfissionalAnalise.java</span></div><h1>ProfissionalAnalise.java</h1><pre class="source lang-java linenums">
+package model;
+
+import java.sql.SQLException;
+import persistence.FuncionarioDao;
+
+<span class="fc" id="L7">public class ProfissionalAnalise extends Funcionario{</span>
+    
+    
+    public static ProfissionalAnalise obterFuncionario(int codigo) throws SQLException, ClassNotFoundException{
+<span class="nc" id="L11">        return FuncionarioDao.obterFuncionarioAnalise(codigo);</span>
+    }
+    
+    
+    public Integer analiseAmostra(double codigoServico, double valor){
+        
+<span class="nc bnc" id="L17" title="All 2 branches missed.">        if(codigoServico == 1){</span>
+<span class="nc" id="L18">            return analisaPh(valor);</span>
+<span class="nc bnc" id="L19" title="All 2 branches missed.">        }else if(codigoServico == 2){</span>
+<span class="nc" id="L20">            return analisaCondutividade(valor);</span>
+<span class="nc bnc" id="L21" title="All 2 branches missed.">        }else if(codigoServico == 3){</span>
+<span class="nc" id="L22">            return analisaOxigenioDissolvido(valor);</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        }else if(codigoServico == 4){</span>
+<span class="nc" id="L24">            return analisaReducaoPermanganato(valor);</span>
+<span class="nc bnc" id="L25" title="All 2 branches missed.">        }else if(codigoServico == 5){</span>
+<span class="nc" id="L26">            return analisaColiformesTotais(valor);</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">        }else if(codigoServico == 6){</span>
+<span class="nc" id="L28">            return analisaNitrogenioAmoniacal(valor);</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">        }else if(codigoServico == 7){</span>
+<span class="nc" id="L30">            return analisaCloretos(valor);</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        }else if(codigoServico == 8){</span>
+<span class="nc" id="L32">            return analisaDetergentes(valor);</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        }else if(codigoServico == 9){</span>
+<span class="nc" id="L34">            return analisaDurezaAlcalinidade(valor);</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        }else if(codigoServico == 10){</span>
+<span class="nc" id="L36">            return analisaSolidosDissolvidos(valor);</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        }else if(codigoServico == 11){</span>
+<span class="nc" id="L38">            return analisaPraguicidas(valor);</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">        }else if(codigoServico == 12){</span>
+<span class="nc" id="L40">            return analisaGraxasAzeites(valor);</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        }else if(codigoServico == 13){</span>
+<span class="nc" id="L42">            return analisaSulfatos(valor);</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        }else if(codigoServico == 14){</span>
+<span class="nc" id="L44">            return analisaNitratos(valor);</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        }else if(codigoServico == 15){</span>
+<span class="nc" id="L46">            return analisaCianetos(valor);</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        }else if(codigoServico == 16){</span>
+<span class="nc" id="L48">            return analisaCoLivre(valor);</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        }else if(codigoServico == 17){</span>
+<span class="nc" id="L50">            return analisaMagnesio(valor);</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">        }else if(codigoServico == 18){</span>
+<span class="nc" id="L52">            return analisaFosfatos(valor);</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        }else if(codigoServico == 19){</span>
+<span class="nc" id="L54">            return analisaNitritos(valor);</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        }else if(codigoServico == 20){</span>
+<span class="nc" id="L56">            return analisaDbo(valor);</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        }else if(codigoServico == 21){</span>
+<span class="nc" id="L58">            return analisaCor(valor);</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        }else if(codigoServico == 22){</span>
+<span class="nc" id="L60">            return analisaTurbidez(valor);</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">        }else if(codigoServico == 23){</span>
+<span class="nc" id="L62">            return analisaSodio(valor);</span>
+        }else{
+<span class="nc" id="L64">            return analisaCalcio(valor);</span>
+        }
+    }
+    
+    public Integer analisaPh(double valor){
+        
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        if(valor &lt;= 1){</span>
+<span class="fc" id="L71">            return 1;</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        }else if(valor &lt;= 2){</span>
+<span class="fc" id="L73">            return 2;</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        }else if(valor &lt;= 3){</span>
+<span class="fc" id="L75">            return 3;</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        }else if(valor &lt;= 4){</span>
+<span class="fc" id="L77">            return 4;</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        }else if(valor &lt;= 5){</span>
+<span class="fc" id="L79">            return 5;</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        }else if(valor &lt;= 6){</span>
+<span class="fc" id="L81">            return 6;</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        }else if(valor &lt;= 7){</span>
+<span class="fc" id="L83">            return 7;</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        }else if(valor &lt;= 8){</span>
+<span class="fc" id="L85">            return 8;</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">        }else if(valor &lt;= 9){</span>
+<span class="fc" id="L87">            return 9;</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        }else if(valor &lt;= 10){</span>
+<span class="fc" id="L89">            return 10;</span>
+        }else{
+<span class="fc" id="L91">            return 11;</span>
+        }
+    }
+    
+    public Integer analisaCondutividade(double valor){
+<span class="fc bfc" id="L96" title="All 2 branches covered.">        if(valor &gt; 16000){</span>
+<span class="fc" id="L97">            return 1;</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        }else if(valor &gt; 12000){</span>
+<span class="fc" id="L99">            return 2;</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">        }else if(valor &gt; 8000){</span>
+<span class="fc" id="L101">            return 3;</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        }else if(valor &gt; 5000){</span>
+<span class="fc" id="L103">            return 4;</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">        }else if(valor &gt; 3000){</span>
+<span class="fc" id="L105">            return 5;</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        }else if(valor &gt; 2500){</span>
+<span class="fc" id="L107">            return 6;</span>
+<span class="fc bfc" id="L108" title="All 2 branches covered.">        }else if(valor &gt; 2000){</span>
+<span class="fc" id="L109">            return 7;</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        }else if(valor &gt; 1500){</span>
+<span class="fc" id="L111">            return 8;</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">        }else if(valor &gt; 1250){</span>
+<span class="fc" id="L113">            return 9;</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">        }else if(valor &gt;= 750){</span>
+<span class="fc" id="L115">            return 10;</span>
+        }else{
+<span class="fc" id="L117">            return 11;</span>
+        }
+    }
+    
+    public Integer analisaOxigenioDissolvido(double valor){
+    
+<span class="fc bfc" id="L123" title="All 2 branches covered.">        if(valor &lt; 1){</span>
+<span class="fc" id="L124">            return 1;</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">        }else if(valor &lt; 2){</span>
+<span class="fc" id="L126">            return 2;</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">        }else if(valor &lt; 3){</span>
+<span class="fc" id="L128">            return 3;</span>
+<span class="fc bfc" id="L129" title="All 2 branches covered.">        }else if(valor &lt; 3.5){</span>
+<span class="fc" id="L130">            return 4;</span>
+<span class="fc bfc" id="L131" title="All 2 branches covered.">        }else if(valor &lt; 4){</span>
+<span class="fc" id="L132">            return 5;</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">        }else if(valor &lt; 5){</span>
+<span class="fc" id="L134">            return 6;</span>
+<span class="fc bfc" id="L135" title="All 2 branches covered.">        }else if(valor &lt; 6){</span>
+<span class="fc" id="L136">            return 7;</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">        }else if(valor &lt; 6.5){</span>
+<span class="fc" id="L138">            return 8;</span>
+<span class="fc bfc" id="L139" title="All 2 branches covered.">        }else if(valor &lt; 7){</span>
+<span class="fc" id="L140">            return 9;</span>
+<span class="fc bfc" id="L141" title="All 2 branches covered.">        }else if(valor &lt; 7.5){</span>
+<span class="fc" id="L142">            return 10;</span>
+        }else{
+<span class="fc" id="L144">            return 11;</span>
+        }
+        
+    }
+    
+    public Integer analisaReducaoPermanganato(double valor){
+    
+<span class="fc bfc" id="L151" title="All 2 branches covered.">        if(valor &gt; 15){</span>
+<span class="fc" id="L152">            return 1;</span>
+<span class="fc bfc" id="L153" title="All 2 branches covered.">        }else if(valor &gt; 12){</span>
+<span class="fc" id="L154">            return 2;</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">        }else if(valor &gt; 10){</span>
+<span class="fc" id="L156">            return 3;</span>
+<span class="fc bfc" id="L157" title="All 2 branches covered.">        }else if(valor &gt; 8){</span>
+<span class="fc" id="L158">            return 4;</span>
+<span class="fc bfc" id="L159" title="All 2 branches covered.">        }else if(valor &gt; 6){</span>
+<span class="fc" id="L160">            return 5;</span>
+<span class="fc bfc" id="L161" title="All 2 branches covered.">        }else if(valor &gt; 5){</span>
+<span class="fc" id="L162">            return 6;</span>
+<span class="fc bfc" id="L163" title="All 2 branches covered.">        }else if(valor &gt; 4){</span>
+<span class="fc" id="L164">            return 7;</span>
+<span class="fc bfc" id="L165" title="All 2 branches covered.">        }else if(valor &gt; 3){</span>
+<span class="fc" id="L166">            return 8;</span>
+<span class="fc bfc" id="L167" title="All 2 branches covered.">        }else if(valor &gt; 2){</span>
+<span class="fc" id="L168">            return 9;</span>
+<span class="fc bfc" id="L169" title="All 2 branches covered.">        }else if(valor &gt; 0.5){</span>
+<span class="fc" id="L170">            return 10;</span>
+        }else{
+<span class="fc" id="L172">            return 11;</span>
+        }
+        
+    }
+    
+    public Integer analisaColiformesTotais(double valor){
+    
+<span class="fc bfc" id="L179" title="All 2 branches covered.">        if(valor &gt; 14000){</span>
+<span class="fc" id="L180">            return 1;</span>
+<span class="fc bfc" id="L181" title="All 2 branches covered.">        }else if(valor &gt; 10000){</span>
+<span class="fc" id="L182">            return 2;</span>
+<span class="fc bfc" id="L183" title="All 2 branches covered.">        }else if(valor &gt; 7000){</span>
+<span class="fc" id="L184">            return 3;</span>
+<span class="fc bfc" id="L185" title="All 2 branches covered.">        }else if(valor &gt; 5000){</span>
+<span class="fc" id="L186">            return 4;</span>
+<span class="fc bfc" id="L187" title="All 2 branches covered.">        }else if(valor &gt; 4000){</span>
+<span class="fc" id="L188">            return 5;</span>
+<span class="fc bfc" id="L189" title="All 2 branches covered.">        }else if(valor &gt; 3000){</span>
+<span class="fc" id="L190">            return 6;</span>
+<span class="fc bfc" id="L191" title="All 2 branches covered.">        }else if(valor &gt; 2000){</span>
+<span class="fc" id="L192">            return 7;</span>
+<span class="fc bfc" id="L193" title="All 2 branches covered.">        }else if(valor &gt; 1500){</span>
+<span class="fc" id="L194">            return 8;</span>
+<span class="fc bfc" id="L195" title="All 2 branches covered.">        }else if(valor &gt; 1000){</span>
+<span class="fc" id="L196">            return 9;</span>
+<span class="fc bfc" id="L197" title="All 2 branches covered.">        }else if(valor &gt; 50){</span>
+<span class="fc" id="L198">            return 10;</span>
+        }else{
+<span class="fc" id="L200">            return 11;</span>
+        } 
+    }
+    
+    public Integer analisaNitrogenioAmoniacal(double valor){
+    
+<span class="fc bfc" id="L206" title="All 2 branches covered.">        if(valor &gt; 1.25){</span>
+<span class="fc" id="L207">            return 1;</span>
+<span class="fc bfc" id="L208" title="All 2 branches covered.">        }else if(valor &gt; 1){</span>
+<span class="fc" id="L209">            return 2;</span>
+<span class="fc bfc" id="L210" title="All 2 branches covered.">        }else if(valor &gt; 0.75){</span>
+<span class="fc" id="L211">            return 3;</span>
+<span class="fc bfc" id="L212" title="All 2 branches covered.">        }else if(valor &gt; 0.5){</span>
+<span class="fc" id="L213">            return 4;</span>
+<span class="fc bfc" id="L214" title="All 2 branches covered.">        }else if(valor &gt; 0.4){</span>
+<span class="fc" id="L215">            return 5;</span>
+<span class="fc bfc" id="L216" title="All 2 branches covered.">        }else if(valor &gt; 0.3){</span>
+<span class="fc" id="L217">            return 6;</span>
+<span class="fc bfc" id="L218" title="All 2 branches covered.">        }else if(valor &gt; 0.2){</span>
+<span class="fc" id="L219">            return 7;</span>
+<span class="fc bfc" id="L220" title="All 2 branches covered.">        }else if(valor &gt; 0.1){</span>
+<span class="fc" id="L221">            return 8;</span>
+<span class="fc bfc" id="L222" title="All 2 branches covered.">        }else if(valor &gt; 0.05){</span>
+<span class="fc" id="L223">            return 9;</span>
+<span class="fc bfc" id="L224" title="All 2 branches covered.">        }else if(valor &gt; 0){</span>
+<span class="fc" id="L225">            return 10;</span>
+        }else{
+<span class="fc" id="L227">            return 11;</span>
+        }
+    }
+    
+    public Integer analisaCloretos(double valor){
+    
+<span class="fc bfc" id="L233" title="All 2 branches covered.">        if(valor &gt; 1500){</span>
+<span class="fc" id="L234">            return 1;</span>
+<span class="fc bfc" id="L235" title="All 2 branches covered.">        }else if(valor &gt; 1000){</span>
+<span class="fc" id="L236">            return 2;</span>
+<span class="fc bfc" id="L237" title="All 2 branches covered.">        }else if(valor &gt; 700){</span>
+<span class="fc" id="L238">            return 3;</span>
+<span class="fc bfc" id="L239" title="All 2 branches covered.">        }else if(valor &gt; 500){</span>
+<span class="fc" id="L240">            return 4;</span>
+<span class="fc bfc" id="L241" title="All 2 branches covered.">        }else if(valor &gt; 300){</span>
+<span class="fc" id="L242">            return 5;</span>
+<span class="fc bfc" id="L243" title="All 2 branches covered.">        }else if(valor &gt; 200){</span>
+<span class="fc" id="L244">            return 6;</span>
+<span class="fc bfc" id="L245" title="All 2 branches covered.">        }else if(valor &gt; 150){</span>
+<span class="fc" id="L246">            return 7;</span>
+<span class="fc bfc" id="L247" title="All 2 branches covered.">        }else if(valor &gt; 100){</span>
+<span class="fc" id="L248">            return 8;</span>
+<span class="fc bfc" id="L249" title="All 2 branches covered.">        }else if(valor &gt; 50){</span>
+<span class="fc" id="L250">            return 9;</span>
+<span class="fc bfc" id="L251" title="All 2 branches covered.">        }else if(valor &gt; 0){</span>
+<span class="fc" id="L252">            return 10;</span>
+        }else{
+<span class="fc" id="L254">            return 11;</span>
+        }
+    }
+    
+    public Integer analisaDetergentes(double valor){
+    
+<span class="fc bfc" id="L260" title="All 2 branches covered.">        if(valor &gt; 3){</span>
+<span class="fc" id="L261">            return 1;</span>
+<span class="fc bfc" id="L262" title="All 2 branches covered.">        }else if(valor &gt; 2){</span>
+<span class="fc" id="L263">            return 2;</span>
+<span class="fc bfc" id="L264" title="All 2 branches covered.">        }else if(valor &gt; 1.5){</span>
+<span class="fc" id="L265">            return 3;</span>
+<span class="fc bfc" id="L266" title="All 2 branches covered.">        }else if(valor &gt; 1){</span>
+<span class="fc" id="L267">            return 4;</span>
+<span class="fc bfc" id="L268" title="All 2 branches covered.">        }else if(valor &gt; 0.75){</span>
+<span class="fc" id="L269">            return 5;</span>
+<span class="fc bfc" id="L270" title="All 2 branches covered.">        }else if(valor &gt; 0.50){</span>
+<span class="fc" id="L271">            return 6;</span>
+<span class="fc bfc" id="L272" title="All 2 branches covered.">        }else if(valor &gt; 0.25){</span>
+<span class="fc" id="L273">            return 7;</span>
+<span class="fc bfc" id="L274" title="All 2 branches covered.">        }else if(valor &gt; 0.10){</span>
+<span class="fc" id="L275">            return 8;</span>
+<span class="fc bfc" id="L276" title="All 2 branches covered.">        }else if(valor &gt; 0.06){</span>
+<span class="fc" id="L277">            return 9;</span>
+<span class="fc bfc" id="L278" title="All 2 branches covered.">        }else if(valor &gt; 0){</span>
+<span class="fc" id="L279">            return 10;</span>
+        }else{
+<span class="fc" id="L281">            return 11;</span>
+        }
+    }
+    
+    public Integer analisaDurezaAlcalinidade(double valor){
+    
+<span class="fc bfc" id="L287" title="All 2 branches covered.">        if(valor &gt; 1500){</span>
+<span class="fc" id="L288">            return 1;</span>
+<span class="fc bfc" id="L289" title="All 2 branches covered.">        }else if(valor &gt; 1000){</span>
+<span class="fc" id="L290">            return 2;</span>
+<span class="fc bfc" id="L291" title="All 2 branches covered.">        }else if(valor &gt; 800){</span>
+<span class="fc" id="L292">            return 3;</span>
+<span class="fc bfc" id="L293" title="All 2 branches covered.">        }else if(valor &gt; 600){</span>
+<span class="fc" id="L294">            return 4;</span>
+<span class="fc bfc" id="L295" title="All 2 branches covered.">        }else if(valor &gt; 500){</span>
+<span class="fc" id="L296">            return 5;</span>
+<span class="fc bfc" id="L297" title="All 2 branches covered.">        }else if(valor &gt; 400){</span>
+<span class="fc" id="L298">            return 6;</span>
+<span class="fc bfc" id="L299" title="All 2 branches covered.">        }else if(valor &gt; 300){</span>
+<span class="fc" id="L300">            return 7;</span>
+<span class="fc bfc" id="L301" title="All 2 branches covered.">        }else if(valor &gt; 200){</span>
+<span class="fc" id="L302">            return 8;</span>
+<span class="fc bfc" id="L303" title="All 2 branches covered.">        }else if(valor &gt; 100){</span>
+<span class="fc" id="L304">            return 9;</span>
+<span class="fc bfc" id="L305" title="All 2 branches covered.">        }else if(valor &gt; 25){</span>
+<span class="fc" id="L306">            return 10;</span>
+        }else{
+<span class="fc" id="L308">            return 11;</span>
+        }
+    }
+    
+    public Integer analisaSolidosDissolvidos(double valor){
+    
+<span class="fc bfc" id="L314" title="All 2 branches covered.">        if(valor &gt; 20000){</span>
+<span class="fc" id="L315">            return 1;</span>
+<span class="fc bfc" id="L316" title="All 2 branches covered.">        }else if(valor &gt; 10000){</span>
+<span class="fc" id="L317">            return 2;</span>
+<span class="fc bfc" id="L318" title="All 2 branches covered.">        }else if(valor &gt; 5000){</span>
+<span class="fc" id="L319">            return 3;</span>
+<span class="fc bfc" id="L320" title="All 2 branches covered.">        }else if(valor &gt; 3000){</span>
+<span class="fc" id="L321">            return 4;</span>
+<span class="fc bfc" id="L322" title="All 2 branches covered.">        }else if(valor &gt; 2000){</span>
+<span class="fc" id="L323">            return 5;</span>
+<span class="fc bfc" id="L324" title="All 2 branches covered.">        }else if(valor &gt; 1500){</span>
+<span class="fc" id="L325">            return 6;</span>
+<span class="fc bfc" id="L326" title="All 2 branches covered.">        }else if(valor &gt; 1000){</span>
+<span class="fc" id="L327">            return 7;</span>
+<span class="fc bfc" id="L328" title="All 2 branches covered.">        }else if(valor &gt; 750){</span>
+<span class="fc" id="L329">            return 8;</span>
+<span class="fc bfc" id="L330" title="All 2 branches covered.">        }else if(valor &gt; 500){</span>
+<span class="fc" id="L331">            return 9;</span>
+<span class="fc bfc" id="L332" title="All 2 branches covered.">        }else if(valor &gt; 100){</span>
+<span class="fc" id="L333">            return 10;</span>
+        }else{
+<span class="fc" id="L335">            return 11;</span>
+        }
+    }
+    
+    public Integer analisaPraguicidas(double valor){
+    
+<span class="fc bfc" id="L341" title="All 2 branches covered.">        if(valor &gt; 2){</span>
+<span class="fc" id="L342">            return 1;</span>
+<span class="fc bfc" id="L343" title="All 2 branches covered.">        }else if(valor &gt; 1){</span>
+<span class="fc" id="L344">            return 2;</span>
+<span class="fc bfc" id="L345" title="All 2 branches covered.">        }else if(valor &gt; 0.4){</span>
+<span class="fc" id="L346">            return 3;</span>
+<span class="fc bfc" id="L347" title="All 2 branches covered.">        }else if(valor &gt; 0.2){</span>
+<span class="fc" id="L348">            return 4;</span>
+<span class="fc bfc" id="L349" title="All 2 branches covered.">        }else if(valor &gt; 0.1){</span>
+<span class="fc" id="L350">            return 5;</span>
+<span class="fc bfc" id="L351" title="All 2 branches covered.">        }else if(valor &gt; 0.05){</span>
+<span class="fc" id="L352">            return 6;</span>
+<span class="fc bfc" id="L353" title="All 2 branches covered.">        }else if(valor &gt; 0.025){</span>
+<span class="fc" id="L354">            return 7;</span>
+<span class="fc bfc" id="L355" title="All 2 branches covered.">        }else if(valor &gt; 0.01){</span>
+<span class="fc" id="L356">            return 8;</span>
+<span class="fc bfc" id="L357" title="All 2 branches covered.">        }else if(valor &gt; 0.005){</span>
+<span class="fc" id="L358">            return 9;</span>
+<span class="fc bfc" id="L359" title="All 2 branches covered.">        }else if(valor &gt; 0){</span>
+<span class="fc" id="L360">            return 10;</span>
+        }else{
+<span class="fc" id="L362">            return 11;</span>
+        }
+    }
+    
+    public Integer analisaGraxasAzeites(double valor){
+    
+<span class="fc bfc" id="L368" title="All 2 branches covered.">        if(valor &gt; 3){</span>
+<span class="fc" id="L369">            return 1;</span>
+<span class="fc bfc" id="L370" title="All 2 branches covered.">        }else if(valor &gt; 2){</span>
+<span class="fc" id="L371">            return 2;</span>
+<span class="fc bfc" id="L372" title="All 2 branches covered.">        }else if(valor &gt; 1){</span>
+<span class="fc" id="L373">            return 3;</span>
+<span class="fc bfc" id="L374" title="All 2 branches covered.">        }else if(valor &gt; 0.6){</span>
+<span class="fc" id="L375">            return 4;</span>
+<span class="fc bfc" id="L376" title="All 2 branches covered.">        }else if(valor &gt; 0.3){</span>
+<span class="fc" id="L377">            return 5;</span>
+<span class="fc bfc" id="L378" title="All 2 branches covered.">        }else if(valor &gt; 0.15){</span>
+<span class="fc" id="L379">            return 6;</span>
+<span class="fc bfc" id="L380" title="All 2 branches covered.">        }else if(valor &gt; 0.08){</span>
+<span class="fc" id="L381">            return 7;</span>
+<span class="fc bfc" id="L382" title="All 2 branches covered.">        }else if(valor &gt; 0.04){</span>
+<span class="fc" id="L383">            return 8;</span>
+<span class="fc bfc" id="L384" title="All 2 branches covered.">        }else if(valor &gt; 0.02){</span>
+<span class="fc" id="L385">            return 9;</span>
+<span class="fc bfc" id="L386" title="All 2 branches covered.">        }else if(valor &gt; 0){</span>
+<span class="fc" id="L387">            return 10;</span>
+        }else{
+<span class="fc" id="L389">            return 11;</span>
+        } 
+    }
+    
+    public Integer analisaSulfatos(double valor){
+    
+<span class="fc bfc" id="L395" title="All 2 branches covered.">        if(valor &gt; 1500){</span>
+<span class="fc" id="L396">            return 1;</span>
+<span class="fc bfc" id="L397" title="All 2 branches covered.">        }else if(valor &gt; 1000){</span>
+<span class="fc" id="L398">            return 2;</span>
+<span class="fc bfc" id="L399" title="All 2 branches covered.">        }else if(valor &gt; 600){</span>
+<span class="fc" id="L400">            return 3;</span>
+<span class="fc bfc" id="L401" title="All 2 branches covered.">        }else if(valor &gt; 400){</span>
+<span class="fc" id="L402">            return 4;</span>
+<span class="fc bfc" id="L403" title="All 2 branches covered.">        }else if(valor &gt; 250){</span>
+<span class="fc" id="L404">            return 5;</span>
+<span class="fc bfc" id="L405" title="All 2 branches covered.">        }else if(valor &gt; 150){</span>
+<span class="fc" id="L406">            return 6;</span>
+<span class="fc bfc" id="L407" title="All 2 branches covered.">        }else if(valor &gt; 100){</span>
+<span class="fc" id="L408">            return 7;</span>
+<span class="fc bfc" id="L409" title="All 2 branches covered.">        }else if(valor &gt; 75){</span>
+<span class="fc" id="L410">            return 8;</span>
+<span class="fc bfc" id="L411" title="All 2 branches covered.">        }else if(valor &gt; 50){</span>
+<span class="fc" id="L412">            return 9;</span>
+<span class="fc bfc" id="L413" title="All 2 branches covered.">        }else if(valor &gt; 0){</span>
+<span class="fc" id="L414">            return 10;</span>
+        }else{
+<span class="fc" id="L416">            return 11;</span>
+        }
+    }
+    
+    public Integer analisaNitratos(double valor){
+    
+<span class="fc bfc" id="L422" title="All 2 branches covered.">        if(valor &gt; 100){</span>
+<span class="fc" id="L423">            return 1;</span>
+<span class="fc bfc" id="L424" title="All 2 branches covered.">        }else if(valor &gt; 50){</span>
+<span class="fc" id="L425">            return 2;</span>
+<span class="fc bfc" id="L426" title="All 2 branches covered.">        }else if(valor &gt; 20){</span>
+<span class="fc" id="L427">            return 3;</span>
+<span class="fc bfc" id="L428" title="All 2 branches covered.">        }else if(valor &gt; 15){</span>
+<span class="fc" id="L429">            return 4;</span>
+<span class="fc bfc" id="L430" title="All 2 branches covered.">        }else if(valor &gt; 10){</span>
+<span class="fc" id="L431">            return 5;</span>
+<span class="fc bfc" id="L432" title="All 2 branches covered.">        }else if(valor &gt; 8){</span>
+<span class="fc" id="L433">            return 6;</span>
+<span class="fc bfc" id="L434" title="All 2 branches covered.">        }else if(valor &gt; 6){</span>
+<span class="fc" id="L435">            return 7;</span>
+<span class="fc bfc" id="L436" title="All 2 branches covered.">        }else if(valor &gt; 4){</span>
+<span class="fc" id="L437">            return 8;</span>
+<span class="fc bfc" id="L438" title="All 2 branches covered.">        }else if(valor &gt; 2){</span>
+<span class="fc" id="L439">            return 9;</span>
+<span class="fc bfc" id="L440" title="All 2 branches covered.">        }else if(valor &gt; 0){</span>
+<span class="fc" id="L441">            return 10;</span>
+        }else{
+<span class="fc" id="L443">            return 11;</span>
+        }
+    }
+    
+    public Integer analisaCianetos(double valor){
+    
+<span class="fc bfc" id="L449" title="All 2 branches covered.">        if(valor &gt; 1){</span>
+<span class="fc" id="L450">            return 1;</span>
+<span class="fc bfc" id="L451" title="All 2 branches covered.">        }else if(valor &gt; 0.6){</span>
+<span class="fc" id="L452">            return 2;</span>
+<span class="fc bfc" id="L453" title="All 2 branches covered.">        }else if(valor &gt; 0.5){</span>
+<span class="fc" id="L454">            return 3;</span>
+<span class="fc bfc" id="L455" title="All 2 branches covered.">        }else if(valor &gt; 0.4){</span>
+<span class="fc" id="L456">            return 4;</span>
+<span class="fc bfc" id="L457" title="All 2 branches covered.">        }else if(valor &gt; 0.3){</span>
+<span class="fc" id="L458">            return 5;</span>
+<span class="fc bfc" id="L459" title="All 2 branches covered.">        }else if(valor &gt; 0.2){</span>
+<span class="fc" id="L460">            return 6;</span>
+<span class="fc bfc" id="L461" title="All 2 branches covered.">        }else if(valor &gt; 0.1){</span>
+<span class="fc" id="L462">            return 7;</span>
+<span class="fc bfc" id="L463" title="All 2 branches covered.">        }else if(valor &gt; 0.05){</span>
+<span class="fc" id="L464">            return 8;</span>
+<span class="fc bfc" id="L465" title="All 2 branches covered.">        }else if(valor &gt; 0.02){</span>
+<span class="fc" id="L466">            return 9;</span>
+<span class="fc bfc" id="L467" title="All 2 branches covered.">        }else if(valor &gt; 0){</span>
+<span class="fc" id="L468">            return 10;</span>
+        }else{
+<span class="fc" id="L470">            return 11;</span>
+        }
+        
+    }
+    
+    public Integer analisaCoLivre(double valor){
+    
+<span class="fc bfc" id="L477" title="All 2 branches covered.">        if(valor &gt; 60){</span>
+<span class="fc" id="L478">            return 1;</span>
+<span class="fc bfc" id="L479" title="All 2 branches covered.">        }else if(valor &gt; 50){</span>
+<span class="fc" id="L480">            return 2;</span>
+<span class="fc bfc" id="L481" title="All 2 branches covered.">        }else if(valor &gt; 40){</span>
+<span class="fc" id="L482">            return 3;</span>
+<span class="fc bfc" id="L483" title="All 2 branches covered.">        }else if(valor &gt; 30){</span>
+<span class="fc" id="L484">            return 4;</span>
+<span class="fc bfc" id="L485" title="All 2 branches covered.">        }else if(valor &gt; 20){</span>
+<span class="fc" id="L486">            return 5;</span>
+<span class="fc bfc" id="L487" title="All 2 branches covered.">        }else if(valor &gt; 10){</span>
+<span class="fc" id="L488">            return 6;</span>
+<span class="fc bfc" id="L489" title="All 2 branches covered.">        }else if(valor &gt; 9){</span>
+<span class="fc" id="L490">            return 7;</span>
+<span class="fc bfc" id="L491" title="All 2 branches covered.">        }else if(valor &gt; 8){</span>
+<span class="fc" id="L492">            return 8;</span>
+<span class="fc bfc" id="L493" title="All 2 branches covered.">        }else if(valor &gt; 7){</span>
+<span class="fc" id="L494">            return 9;</span>
+<span class="fc bfc" id="L495" title="All 2 branches covered.">        }else if(valor &gt; 3){</span>
+<span class="fc" id="L496">            return 10;</span>
+        }else{
+<span class="fc" id="L498">            return 11;</span>
+        }
+    }
+    
+    public Integer analisaMagnesio(double valor){
+    
+<span class="fc bfc" id="L504" title="All 2 branches covered.">        if(valor &gt; 500){</span>
+<span class="fc" id="L505">            return 1;</span>
+<span class="fc bfc" id="L506" title="All 2 branches covered.">        }else if(valor &gt; 300){</span>
+<span class="fc" id="L507">            return 2;</span>
+<span class="fc bfc" id="L508" title="All 2 branches covered.">        }else if(valor &gt; 250){</span>
+<span class="fc" id="L509">            return 3;</span>
+<span class="fc bfc" id="L510" title="All 2 branches covered.">        }else if(valor &gt; 200){</span>
+<span class="fc" id="L511">            return 4;</span>
+<span class="fc bfc" id="L512" title="All 2 branches covered.">        }else if(valor &gt; 150){</span>
+<span class="fc" id="L513">            return 5;</span>
+<span class="fc bfc" id="L514" title="All 2 branches covered.">        }else if(valor &gt; 100){</span>
+<span class="fc" id="L515">            return 6;</span>
+<span class="fc bfc" id="L516" title="All 2 branches covered.">        }else if(valor &gt; 75){</span>
+<span class="fc" id="L517">            return 7;</span>
+<span class="fc bfc" id="L518" title="All 2 branches covered.">        }else if(valor &gt; 50){</span>
+<span class="fc" id="L519">            return 8;</span>
+<span class="fc bfc" id="L520" title="All 2 branches covered.">        }else if(valor &gt; 25){</span>
+<span class="fc" id="L521">            return 9;</span>
+<span class="fc bfc" id="L522" title="All 2 branches covered.">        }else if(valor &gt; 10){</span>
+<span class="fc" id="L523">            return 10;</span>
+        }else{
+<span class="fc" id="L525">            return 11;</span>
+        } 
+    }
+    
+    public Integer analisaFosfatos(double valor){
+    
+<span class="fc bfc" id="L531" title="All 2 branches covered.">        if(valor &gt; 500){</span>
+<span class="fc" id="L532">            return 1;</span>
+<span class="fc bfc" id="L533" title="All 2 branches covered.">        }else if(valor &gt; 300){</span>
+<span class="fc" id="L534">            return 2;</span>
+<span class="fc bfc" id="L535" title="All 2 branches covered.">        }else if(valor &gt; 200){</span>
+<span class="fc" id="L536">            return 3;</span>
+<span class="fc bfc" id="L537" title="All 2 branches covered.">        }else if(valor &gt; 100){</span>
+<span class="fc" id="L538">            return 4;</span>
+<span class="fc bfc" id="L539" title="All 2 branches covered.">        }else if(valor &gt; 50){</span>
+<span class="fc" id="L540">            return 5;</span>
+<span class="fc bfc" id="L541" title="All 2 branches covered.">        }else if(valor &gt; 30){</span>
+<span class="fc" id="L542">            return 6;</span>
+<span class="fc bfc" id="L543" title="All 2 branches covered.">        }else if(valor &gt; 20){</span>
+<span class="fc" id="L544">            return 7;</span>
+<span class="fc bfc" id="L545" title="All 2 branches covered.">        }else if(valor &gt; 10){</span>
+<span class="fc" id="L546">            return 8;</span>
+<span class="fc bfc" id="L547" title="All 2 branches covered.">        }else if(valor &gt; 5){</span>
+<span class="fc" id="L548">            return 9;</span>
+<span class="fc bfc" id="L549" title="All 2 branches covered.">        }else if(valor &gt; 0){</span>
+<span class="fc" id="L550">            return 10;</span>
+        }else{
+<span class="fc" id="L552">            return 11;</span>
+        }
+    }
+    
+    public Integer analisaNitritos(double valor){
+    
+<span class="fc bfc" id="L558" title="All 2 branches covered.">        if(valor &gt; 1){</span>
+<span class="fc" id="L559">            return 1;</span>
+<span class="fc bfc" id="L560" title="All 2 branches covered.">        }else if(valor &gt; 0.5){</span>
+<span class="fc" id="L561">            return 2;</span>
+<span class="fc bfc" id="L562" title="All 2 branches covered.">        }else if(valor &gt; 0.25){</span>
+<span class="fc" id="L563">            return 3;</span>
+<span class="fc bfc" id="L564" title="All 2 branches covered.">        }else if(valor &gt; 0.20){</span>
+<span class="fc" id="L565">            return 4;</span>
+<span class="fc bfc" id="L566" title="All 2 branches covered.">        }else if(valor &gt; 0.15){</span>
+<span class="fc" id="L567">            return 5;</span>
+<span class="fc bfc" id="L568" title="All 2 branches covered.">        }else if(valor &gt; 0.10){</span>
+<span class="fc" id="L569">            return 6;</span>
+<span class="fc bfc" id="L570" title="All 2 branches covered.">        }else if(valor &gt; 0.05){</span>
+<span class="fc" id="L571">            return 7;</span>
+<span class="fc bfc" id="L572" title="All 2 branches covered.">        }else if(valor &gt; 0.025){</span>
+<span class="fc" id="L573">            return 8;</span>
+<span class="fc bfc" id="L574" title="All 2 branches covered.">        }else if(valor &gt; 0.010){</span>
+<span class="fc" id="L575">            return 9;</span>
+<span class="fc bfc" id="L576" title="All 2 branches covered.">        }else if(valor &gt; 0){</span>
+<span class="fc" id="L577">            return 10;</span>
+        }else{
+<span class="fc" id="L579">            return 11;</span>
+        }
+    }
+    
+    public Integer analisaDbo(double valor){
+    
+<span class="fc bfc" id="L585" title="All 2 branches covered.">        if(valor &gt; 15){</span>
+<span class="fc" id="L586">            return 1;</span>
+<span class="fc bfc" id="L587" title="All 2 branches covered.">        }else if(valor &gt; 12){</span>
+<span class="fc" id="L588">            return 2;</span>
+<span class="fc bfc" id="L589" title="All 2 branches covered.">        }else if(valor &gt; 10){</span>
+<span class="fc" id="L590">            return 3;</span>
+<span class="fc bfc" id="L591" title="All 2 branches covered.">        }else if(valor &gt; 8){</span>
+<span class="fc" id="L592">            return 4;</span>
+<span class="fc bfc" id="L593" title="All 2 branches covered.">        }else if(valor &gt; 6){</span>
+<span class="fc" id="L594">            return 5;</span>
+<span class="fc bfc" id="L595" title="All 2 branches covered.">        }else if(valor &gt; 5){</span>
+<span class="fc" id="L596">            return 6;</span>
+<span class="fc bfc" id="L597" title="All 2 branches covered.">        }else if(valor &gt; 4){</span>
+<span class="fc" id="L598">            return 7;</span>
+<span class="fc bfc" id="L599" title="All 2 branches covered.">        }else if(valor &gt; 2){</span>
+<span class="fc" id="L600">            return 8;</span>
+<span class="fc bfc" id="L601" title="All 2 branches covered.">        }else if(valor &gt; 1){</span>
+<span class="fc" id="L602">            return 9;</span>
+<span class="fc bfc" id="L603" title="All 2 branches covered.">        }else if(valor &gt; 0.5){</span>
+<span class="fc" id="L604">            return 10;</span>
+        }else{
+<span class="fc" id="L606">            return 11;</span>
+        }
+    }
+    
+    public Integer analisaCor(double valor){
+    
+<span class="fc bfc" id="L612" title="All 2 branches covered.">        if(valor &gt; 250){</span>
+<span class="fc" id="L613">            return 1;</span>
+<span class="fc bfc" id="L614" title="All 2 branches covered.">        }else if(valor &gt; 100){</span>
+<span class="fc" id="L615">            return 2;</span>
+<span class="fc bfc" id="L616" title="All 2 branches covered.">        }else if(valor &gt; 60){</span>
+<span class="fc" id="L617">            return 3;</span>
+<span class="fc bfc" id="L618" title="All 2 branches covered.">        }else if(valor &gt; 40){</span>
+<span class="fc" id="L619">            return 4;</span>
+<span class="fc bfc" id="L620" title="All 2 branches covered.">        }else if(valor &gt; 30){</span>
+<span class="fc" id="L621">            return 5;</span>
+<span class="fc bfc" id="L622" title="All 2 branches covered.">        }else if(valor &gt; 20){</span>
+<span class="fc" id="L623">            return 6;</span>
+<span class="fc bfc" id="L624" title="All 2 branches covered.">        }else if(valor &gt; 15){</span>
+<span class="fc" id="L625">            return 7;</span>
+<span class="fc bfc" id="L626" title="All 2 branches covered.">        }else if(valor &gt; 10){</span>
+<span class="fc" id="L627">            return 8;</span>
+<span class="fc bfc" id="L628" title="All 2 branches covered.">        }else if(valor &gt; 5){</span>
+<span class="fc" id="L629">            return 9;</span>
+<span class="fc bfc" id="L630" title="All 2 branches covered.">        }else if(valor &gt; 3){</span>
+<span class="fc" id="L631">            return 10;</span>
+        }else{
+<span class="fc" id="L633">            return 11;</span>
+        }
+    }
+    
+    public Integer analisaTurbidez(double valor){
+    
+<span class="fc bfc" id="L639" title="All 2 branches covered.">        if(valor &gt; 400){</span>
+<span class="fc" id="L640">            return 1;</span>
+<span class="fc bfc" id="L641" title="All 2 branches covered.">        }else if(valor &gt; 250){</span>
+<span class="fc" id="L642">            return 2;</span>
+<span class="fc bfc" id="L643" title="All 2 branches covered.">        }else if(valor &gt; 180){</span>
+<span class="fc" id="L644">            return 3;</span>
+<span class="fc bfc" id="L645" title="All 2 branches covered.">        }else if(valor &gt; 100){</span>
+<span class="fc" id="L646">            return 4;</span>
+<span class="fc bfc" id="L647" title="All 2 branches covered.">        }else if(valor &gt; 50){</span>
+<span class="fc" id="L648">            return 5;</span>
+<span class="fc bfc" id="L649" title="All 2 branches covered.">        }else if(valor &gt; 20){</span>
+<span class="fc" id="L650">            return 6;</span>
+<span class="fc bfc" id="L651" title="All 2 branches covered.">        }else if(valor &gt; 15){</span>
+<span class="fc" id="L652">            return 7;</span>
+<span class="fc bfc" id="L653" title="All 2 branches covered.">        }else if(valor &gt; 10){</span>
+<span class="fc" id="L654">            return 8;</span>
+<span class="fc bfc" id="L655" title="All 2 branches covered.">        }else if(valor &gt; 5){</span>
+<span class="fc" id="L656">            return 9;</span>
+<span class="fc bfc" id="L657" title="All 2 branches covered.">        }else if(valor &gt; 3){</span>
+<span class="fc" id="L658">            return 10;</span>
+        }else{
+<span class="fc" id="L660">            return 11;</span>
+        }
+    }
+    
+    public Integer analisaSodio(double valor){
+    
+<span class="fc bfc" id="L666" title="All 2 branches covered.">        if(valor &gt; 500){</span>
+<span class="fc" id="L667">            return 1;</span>
+<span class="fc bfc" id="L668" title="All 2 branches covered.">        }else if(valor &gt; 300){</span>
+<span class="fc" id="L669">            return 2;</span>
+<span class="fc bfc" id="L670" title="All 2 branches covered.">        }else if(valor &gt; 250){</span>
+<span class="fc" id="L671">            return 3;</span>
+<span class="fc bfc" id="L672" title="All 2 branches covered.">        }else if(valor &gt; 200){</span>
+<span class="fc" id="L673">            return 4;</span>
+<span class="fc bfc" id="L674" title="All 2 branches covered.">        }else if(valor &gt; 150){</span>
+<span class="fc" id="L675">            return 5;</span>
+<span class="fc bfc" id="L676" title="All 2 branches covered.">        }else if(valor &gt; 100){</span>
+<span class="fc" id="L677">            return 6;</span>
+<span class="fc bfc" id="L678" title="All 2 branches covered.">        }else if(valor &gt; 75){</span>
+<span class="fc" id="L679">            return 7;</span>
+<span class="fc bfc" id="L680" title="All 2 branches covered.">        }else if(valor &gt; 50){</span>
+<span class="fc" id="L681">            return 8;</span>
+<span class="fc bfc" id="L682" title="All 2 branches covered.">        }else if(valor &gt; 25){</span>
+<span class="fc" id="L683">            return 9;</span>
+<span class="fc bfc" id="L684" title="All 2 branches covered.">        }else if(valor &gt; 10){</span>
+<span class="fc" id="L685">            return 10;</span>
+        }else{
+<span class="fc" id="L687">            return 11;</span>
+        }
+    }
+    
+    public Integer analisaCalcio(double valor){
+    
+<span class="fc bfc" id="L693" title="All 2 branches covered.">        if(valor &gt; 1000){</span>
+<span class="fc" id="L694">            return 1;</span>
+<span class="fc bfc" id="L695" title="All 2 branches covered.">        }else if(valor &gt; 600){</span>
+<span class="fc" id="L696">            return 2;</span>
+<span class="fc bfc" id="L697" title="All 2 branches covered.">        }else if(valor &gt; 500){</span>
+<span class="fc" id="L698">            return 3;</span>
+<span class="fc bfc" id="L699" title="All 2 branches covered.">        }else if(valor &gt; 400){</span>
+<span class="fc" id="L700">            return 4;</span>
+<span class="fc bfc" id="L701" title="All 2 branches covered.">        }else if(valor &gt; 300){</span>
+<span class="fc" id="L702">            return 5;</span>
+<span class="fc bfc" id="L703" title="All 2 branches covered.">        }else if(valor &gt; 200){</span>
+<span class="fc" id="L704">            return 6;</span>
+<span class="fc bfc" id="L705" title="All 2 branches covered.">        }else if(valor &gt; 150){</span>
+<span class="fc" id="L706">            return 7;</span>
+<span class="fc bfc" id="L707" title="All 2 branches covered.">        }else if(valor &gt; 100){</span>
+<span class="fc" id="L708">            return 8;</span>
+<span class="fc bfc" id="L709" title="All 2 branches covered.">        }else if(valor &gt; 50){</span>
+<span class="fc" id="L710">            return 9;</span>
+<span class="fc bfc" id="L711" title="All 2 branches covered.">        }else if(valor &gt; 10){</span>
+<span class="fc" id="L712">            return 10;</span>
+        }else{
+<span class="fc" id="L714">            return 11;</span>
+        }
+    }  
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

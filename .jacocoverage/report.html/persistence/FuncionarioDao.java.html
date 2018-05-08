@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>FuncionarioDao.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ControleQualidadeAgua&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">persistence</a> &gt; <span class="el_source">FuncionarioDao.java</span></div><h1>FuncionarioDao.java</h1><pre class="source lang-java linenums">
+package persistence;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import model.Empresa;
+import model.Funcionario;
+import model.ProfissionalAnalise;
+import model.ProfissionalEspecialista;
+
+
+public class FuncionarioDao {
+<span class="fc" id="L18">    private static FuncionarioDao instance = new FuncionarioDao();</span>
+<span class="fc" id="L19">    private FuncionarioDao(){}</span>
+<span class="fc" id="L20">    public static FuncionarioDao getInstance(){return instance;}</span>
+    
+    
+    public void save(Funcionario funcionario) throws SQLException, ClassNotFoundException{
+        
+<span class="nc" id="L25">        Connection conn = null;</span>
+<span class="nc" id="L26">        PreparedStatement stmt = null;</span>
+        
+        try{
+<span class="nc" id="L29">            conn = DatabaseLocator.getInstance().getConnection();</span>
+<span class="nc" id="L30">            stmt = conn.prepareStatement(&quot;INSERT INTO FUNCIONARIO &quot;</span>
+                    + &quot;(NOME, IDENTIFICACAO, COD_EMPRESA, CARGO) &quot;
+                    + &quot;VALUES (?, ?, ?, ?)&quot;);
+<span class="nc" id="L33">            parseAtributos(stmt, funcionario);</span>
+            
+<span class="nc" id="L35">        }catch(SQLException e){</span>
+<span class="nc" id="L36">            throw e;</span>
+        }finally{
+<span class="nc" id="L38">            closeResources(conn, stmt);</span>
+<span class="nc" id="L39">        }</span>
+<span class="nc" id="L40">    }</span>
+      
+    
+    public void drop(int codigo) throws SQLException, ClassNotFoundException{
+        
+<span class="nc" id="L45">        Connection conn = null;</span>
+<span class="nc" id="L46">        PreparedStatement stmt = null;</span>
+        
+        try{
+<span class="nc" id="L49">            conn = DatabaseLocator.getInstance().getConnection();</span>
+<span class="nc" id="L50">            stmt = conn.prepareStatement(&quot;DELETE FROM FUNCIONARIO WHERE CODIGO = ?&quot;);</span>
+<span class="nc" id="L51">            stmt.setInt(1, codigo);</span>
+<span class="nc" id="L52">            stmt.execute();</span>
+        
+<span class="nc" id="L54">        }catch(SQLException e){</span>
+<span class="nc" id="L55">            throw e;</span>
+        }finally{
+<span class="nc" id="L57">            closeResources(conn, stmt);</span>
+<span class="nc" id="L58">        }</span>
+<span class="nc" id="L59">    }</span>
+    
+    
+    public static List&lt;Funcionario&gt; obterFuncionarios() throws SQLException, ClassNotFoundException{
+        
+<span class="nc" id="L64">        Connection conn = null;</span>
+<span class="nc" id="L65">        Statement st = null;</span>
+<span class="nc" id="L66">        List&lt;Funcionario&gt; funcionarios = new ArrayList&lt;&gt;();</span>
+        try{
+<span class="nc" id="L68">            conn = DatabaseLocator.getInstance().getConnection();</span>
+<span class="nc" id="L69">            st = conn.createStatement();</span>
+<span class="nc" id="L70">            ResultSet rs = st.executeQuery(&quot;SELECT * FROM FUNCIONARIO&quot;);</span>
+            
+<span class="nc bnc" id="L72" title="All 2 branches missed.">            while (rs.next()){</span>
+<span class="nc" id="L73">                funcionarios.add(instanciaFuncionario(rs));</span>
+            }
+            
+<span class="nc" id="L76">            return funcionarios;</span>
+<span class="nc" id="L77">        }catch(SQLException e){</span>
+<span class="nc" id="L78">            throw e;</span>
+        }finally{
+<span class="nc" id="L80">            closeResources(conn, st);</span>
+        }
+    }
+    
+    
+    public static Funcionario obterFuncionario(int codigo) throws SQLException, ClassNotFoundException{
+        
+<span class="nc" id="L87">        Connection conn = null;</span>
+<span class="nc" id="L88">        PreparedStatement stmt = null;</span>
+<span class="nc" id="L89">        Funcionario cliente = null;</span>
+        try{
+<span class="nc" id="L91">            conn = DatabaseLocator.getInstance().getConnection();</span>
+<span class="nc" id="L92">            stmt = conn.prepareStatement(&quot;SELECT * FROM FUNCIONARIO WHERE CODIGO = ?&quot;);</span>
+<span class="nc" id="L93">            stmt.setInt(1, codigo);</span>
+<span class="nc" id="L94">            ResultSet rs = stmt.executeQuery();</span>
+            
+<span class="nc bnc" id="L96" title="All 2 branches missed.">            while (rs.next()){</span>
+<span class="nc" id="L97">                cliente = instanciaFuncionario(rs);</span>
+            }
+            
+<span class="nc" id="L100">            return cliente;</span>
+<span class="nc" id="L101">        }catch(SQLException e){</span>
+<span class="nc" id="L102">            throw e;</span>
+        }finally{
+<span class="nc" id="L104">            closeResources(conn, stmt);</span>
+        }
+    }
+    
+    
+    public static ProfissionalAnalise obterFuncionarioAnalise(int codigo) throws SQLException, ClassNotFoundException{
+        
+<span class="nc" id="L111">        Connection conn = null;</span>
+<span class="nc" id="L112">        PreparedStatement stmt = null;</span>
+        try{
+<span class="nc" id="L114">            conn = DatabaseLocator.getInstance().getConnection();</span>
+<span class="nc" id="L115">            stmt = conn.prepareStatement(&quot;SELECT * FROM FUNCIONARIO WHERE CODIGO = ?&quot;);</span>
+<span class="nc" id="L116">            stmt.setInt(1, codigo);</span>
+<span class="nc" id="L117">            ResultSet rs = stmt.executeQuery();</span>
+            
+<span class="nc" id="L119">            ProfissionalAnalise funcionario = new ProfissionalAnalise();</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">            while (rs.next()){</span>
+                
+<span class="nc" id="L122">                funcionario.setCodigo(Integer.parseInt(rs.getString(&quot;CODIGO&quot;)));</span>
+<span class="nc" id="L123">                funcionario.setNome(rs.getString(&quot;NOME&quot;));</span>
+<span class="nc" id="L124">                funcionario.setIdentificacao(rs.getString(&quot;IDENTIFICACAO&quot;));</span>
+<span class="nc" id="L125">                funcionario.setEmpresa(Empresa.obterEmpresa(Integer.parseInt(rs.getString(&quot;COD_EMPRESA&quot;))));</span>
+<span class="nc" id="L126">                funcionario.setCargo(Integer.parseInt(rs.getString(&quot;CARGO&quot;)));</span>
+            }
+            
+<span class="nc" id="L129">            return funcionario;</span>
+<span class="nc" id="L130">        }catch(SQLException e){</span>
+<span class="nc" id="L131">            throw e;</span>
+        }finally{
+<span class="nc" id="L133">            closeResources(conn, stmt);</span>
+        }
+    }
+    
+    
+    public static ProfissionalEspecialista obterFuncionarioEspecialista(int codigo) throws SQLException, ClassNotFoundException{
+        
+<span class="nc" id="L140">        Connection conn = null;</span>
+<span class="nc" id="L141">        PreparedStatement stmt = null;</span>
+        try{
+<span class="nc" id="L143">            conn = DatabaseLocator.getInstance().getConnection();</span>
+<span class="nc" id="L144">            stmt = conn.prepareStatement(&quot;SELECT * FROM FUNCIONARIO WHERE CODIGO = ?&quot;);</span>
+<span class="nc" id="L145">            stmt.setInt(1, codigo);</span>
+<span class="nc" id="L146">            ResultSet rs = stmt.executeQuery();</span>
+            
+<span class="nc" id="L148">            ProfissionalEspecialista funcionario = new ProfissionalEspecialista();</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            while (rs.next()){</span>
+                
+<span class="nc" id="L151">                funcionario.setCodigo(Integer.parseInt(rs.getString(&quot;CODIGO&quot;)));</span>
+<span class="nc" id="L152">                funcionario.setNome(rs.getString(&quot;NOME&quot;));</span>
+<span class="nc" id="L153">                funcionario.setIdentificacao(rs.getString(&quot;IDENTIFICACAO&quot;));</span>
+<span class="nc" id="L154">                funcionario.setEmpresa(Empresa.obterEmpresa(Integer.parseInt(rs.getString(&quot;COD_EMPRESA&quot;))));</span>
+<span class="nc" id="L155">                funcionario.setCargo(Integer.parseInt(rs.getString(&quot;CARGO&quot;)));</span>
+            }
+            
+<span class="nc" id="L158">            return funcionario;</span>
+<span class="nc" id="L159">        }catch(SQLException e){</span>
+<span class="nc" id="L160">            throw e;</span>
+        }finally{
+<span class="nc" id="L162">            closeResources(conn, stmt);</span>
+        }
+    }
+    
+    
+    public boolean update(Funcionario funcionario) throws SQLException, ClassNotFoundException{
+        
+<span class="fc" id="L169">        Connection conn = null;</span>
+<span class="fc" id="L170">        PreparedStatement stmt = null;</span>
+<span class="fc" id="L171">        Boolean retorno = true;</span>
+        
+        try{
+<span class="fc" id="L174">            conn = DatabaseLocator.getInstance().getConnection();</span>
+<span class="fc" id="L175">            stmt = conn.prepareStatement(&quot;UPDATE FUNCIONARIO SET &quot;</span>
+                    + &quot;NOME = ?, &quot;
+                    + &quot;IDENTIFICACAO = ?, &quot;
+                    + &quot;COD_EMPRESA = ?, &quot;
+                    + &quot;CARGO = ? WHERE CODIGO = ?&quot;);
+<span class="fc" id="L180">            parseAtributos(stmt, funcionario);</span>
+        
+<span class="nc" id="L182">        }catch(SQLException e){</span>
+<span class="nc" id="L183">            retorno = false;</span>
+<span class="nc" id="L184">            throw e;</span>
+        }finally{
+<span class="pc" id="L186">            closeResources(conn, stmt);</span>
+<span class="fc" id="L187">        }</span>
+<span class="fc" id="L188">        return retorno;</span>
+    }
+    
+    
+    public static void closeResources (Connection conn, Statement st) throws SQLException{
+        try{
+<span class="pc bpc" id="L194" title="1 of 2 branches missed.">            if(st!=null) st.close();</span>
+<span class="pc bpc" id="L195" title="1 of 2 branches missed.">            if(conn!=null) conn.close();</span>
+<span class="nc" id="L196">        }catch(SQLException e){</span>
+<span class="nc" id="L197">            throw e;</span>
+<span class="fc" id="L198">        }</span>
+<span class="fc" id="L199">    }</span>
+    
+    
+    private static void parseAtributos(PreparedStatement stmt, Funcionario funcionario) throws SQLException{
+<span class="fc" id="L203">            stmt.setString(1, funcionario.getNome());</span>
+<span class="fc" id="L204">            stmt.setString(2, funcionario.getIdentificacao());</span>
+<span class="fc" id="L205">            stmt.setInt(3, funcionario.getEmpresa().getCodigo());</span>
+<span class="fc" id="L206">            stmt.setInt(4, funcionario.getCargo());</span>
+<span class="pc bpc" id="L207" title="1 of 2 branches missed.">        if(funcionario.getCodigo() != 0){</span>
+<span class="fc" id="L208">            stmt.setInt(5, funcionario.getCodigo());</span>
+        }
+<span class="fc" id="L210">            stmt.execute();</span>
+<span class="fc" id="L211">    }</span>
+    
+    
+    private static Funcionario instanciaFuncionario(ResultSet rs) throws SQLException, ClassNotFoundException{
+        
+<span class="nc" id="L216">        Funcionario funcionario = new Funcionario();</span>
+<span class="nc" id="L217">        funcionario.setCodigo(Integer.parseInt(rs.getString(&quot;CODIGO&quot;)));</span>
+<span class="nc" id="L218">        funcionario.setNome(rs.getString(&quot;NOME&quot;));</span>
+<span class="nc" id="L219">        funcionario.setIdentificacao(rs.getString(&quot;IDENTIFICACAO&quot;));</span>
+<span class="nc" id="L220">        funcionario.setEmpresa(Empresa.obterEmpresa(Integer.parseInt(rs.getString(&quot;COD_EMPRESA&quot;))));</span>
+<span class="nc" id="L221">        funcionario.setCargo(Integer.parseInt(rs.getString(&quot;CARGO&quot;)));</span>
+        
+<span class="nc" id="L223">        return funcionario;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

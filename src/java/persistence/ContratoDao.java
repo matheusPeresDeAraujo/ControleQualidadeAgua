@@ -125,7 +125,13 @@ public class ContratoDao {
         
         try{
             conn = DatabaseLocator.getInstance().getConnection();
-            stmt = conn.prepareStatement("UPDATE CONTRATO SET COD_CLIENTE = ?, COD_EMPRESA = ?, COD_CONTRATO_ESTADO = ?, COD_LOCAL = ?, DESCRICAO = ? WHERE CODIGO = ?");
+            stmt = conn.prepareStatement(
+                    "UPDATE CONTRATO SET "
+                            + "COD_CLIENTE = ?, "
+                            + "COD_EMPRESA = ?, "
+                            + "COD_CONTRATO_ESTADO = ?, "
+                            + "COD_LOCAL = ?, "
+                            + "DESCRICAO = ? WHERE CODIGO = ?");
             parseAtributos(stmt, contrato);
         
         }catch(SQLException e){

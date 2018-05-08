@@ -8,15 +8,13 @@ import model.Contrato;
 import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
-public class TestContrato extends TestCase{
+public class contratoTest extends TestCase{
     
     public void testContratoSucessoUpdate() throws SQLException, ClassNotFoundException {
         
         HttpServletRequest requestMock = createMock(HttpServletRequest.class);
-        expect(requestMock.getParameter("textCodigo")).andReturn("11");
+        expect(requestMock.getParameter("textCodigo")).andReturn("17");
         expect(requestMock.getParameter("textCodigoCliente")).andReturn("4");
         expect(requestMock.getParameter("textCodigoEmpresa")).andReturn("3");
         expect(requestMock.getParameter("textContratoEstado")).andReturn("1");
